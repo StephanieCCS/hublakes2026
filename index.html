@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hub Lakes Swim Championships 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep:#0E1F14;
+    --deep2:#173B24;
+    --teal:#6E756A;
+    --green:#1E8449;
+    --green-deep:#125C31;
+    --aqua:#C7D0BE;
+    --white:#FFFFFF;
+    --ink:#101410;
+    --mist:#EEF1EA;
+    --max:1180px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    line-height:1.02;
+  }
+  .mono{font-family:'Space Mono', monospace;}
+  a{color:inherit;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+  img{max-width:100%; display:block;}
+
+  /* ===== BANNER LABEL (signature) ===== */
+  .banner-label{
+    display:inline-flex; align-items:center; gap:8px; position:relative; background:var(--green);
+    color:var(--white); font-family:'Space Mono',monospace; font-size:0.72rem; font-weight:700;
+    letter-spacing:1.5px; text-transform:uppercase; padding:7px 18px;
+    clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);
+    margin-bottom:14px;
+  }
+  .banner-label::before{content:"~"; font-family:'Space Mono',monospace; font-weight:700;}
+
+  /* ===== NAV ===== */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:var(--deep); border-bottom:4px solid var(--green);
+  }
+  .navbar{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:var(--max); margin:0 auto; padding:12px 24px;
+  }
+  .brand{
+    font-family:'Anton',sans-serif; font-size:1.25rem; text-transform:uppercase;
+    text-decoration:none; color:var(--white); display:flex; align-items:center; gap:8px; letter-spacing:0.5px;
+  }
+  .brand .swash{color:var(--aqua);}
+  nav.links{display:flex; gap:2px; flex-wrap:wrap;}
+  nav.links a{
+    color:#c9d4c2; text-decoration:none; font-family:'Space Mono',monospace;
+    font-size:0.72rem; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; padding:10px 12px; border-radius:2px;
+    transition:background .15s, color .15s;
+  }
+  nav.links a:hover{background:var(--green); color:var(--white);}
+  .navToggle{display:none; background:none; border:none; color:var(--white); font-size:1.6rem; cursor:pointer;}
+
+  @media (max-width:900px){
+    nav.links{
+      position:fixed; top:56px; left:0; right:0; bottom:0;
+      background:var(--deep); flex-direction:column; padding:20px 24px;
+      transform:translateX(-100%); transition:transform .25s ease; overflow-y:auto;
+    }
+    nav.links.open{transform:translateX(0);}
+    nav.links a{font-size:1.05rem; padding:14px 8px; border-bottom:1px solid #1e3a26;}
+    .navToggle{display:block;}
+  }
+
+  /* ===== WAVE DIVIDER (signature) ===== */
+  .wave{display:block; width:100%; line-height:0;}
+  .wave svg{width:100%; height:60px; display:block;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative; overflow:hidden; padding:80px 24px 0;
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -10%, rgba(30,132,73,0.28), transparent 60%),
+      linear-gradient(160deg, var(--deep) 0%, var(--deep2) 45%, var(--teal) 100%);
+    color:var(--white);
+  }
+  .hero .ripples{position:absolute; inset:0; opacity:0.15; pointer-events:none;
+    background-image:
+      radial-gradient(circle, transparent 0, transparent 40px, rgba(255,255,255,0.5) 41px, transparent 42px),
+      radial-gradient(circle, transparent 0, transparent 70px, rgba(255,255,255,0.4) 71px, transparent 72px);
+    background-size:180px 180px, 260px 260px; background-position:10% 20%, 80% 60%;
+  }
+  .hero .wrap{position:relative; z-index:2; padding-bottom:60px; display:grid; grid-template-columns:1.35fr 0.85fr; gap:40px; align-items:center;}
+  @media (max-width:900px){.hero .wrap{grid-template-columns:1fr;}}
+  .hero h1{
+    font-size:clamp(2.7rem, 6.6vw, 5rem); color:var(--white); margin-bottom:16px;
+  }
+  .hero h1 em{color:var(--aqua); font-style:normal;}
+  .hero .sub{
+    font-size:clamp(1rem, 1.6vw, 1.2rem); color:#d7e0cf; max-width:520px; font-weight:500;
+  }
+  .lane-badge{
+    width:210px; height:210px; border-radius:50%; margin:0 auto; position:relative;
+    background:var(--green); display:flex; align-items:center; justify-content:center; text-align:center;
+    border:6px solid var(--white); box-shadow:0 10px 26px rgba(0,0,0,0.28);
+  }
+  .lane-badge .inner{padding:14px;}
+  .lane-badge .yr{font-family:'Anton',sans-serif; font-size:2.3rem; color:var(--white); line-height:1;}
+  .lane-badge .dates{font-family:'Space Mono',monospace; font-size:0.72rem; margin-top:8px; letter-spacing:0.5px; color:#e7f2e0;}
+  .lane-badge .loc{font-family:'Space Mono',monospace; font-size:0.62rem; margin-top:8px; color:#dcefd4; text-transform:uppercase; letter-spacing:1px;}
+
+  /* ===== COUNTDOWN ===== */
+  .countdown{display:flex; gap:14px; margin-top:30px;}
+  .cd-unit{
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.25); border-radius:6px;
+    padding:12px 16px; min-width:64px; text-align:center; backdrop-filter:blur(2px);
+  }
+  .cd-num{
+    display:block; font-family:'Space Mono',monospace; font-weight:700; font-size:1.5rem; color:var(--white);
+    font-variant-numeric:tabular-nums;
+  }
+  .cd-label{display:block; font-family:'Space Mono',monospace; font-size:0.62rem; color:#a9c4ac; text-transform:uppercase; letter-spacing:1px; margin-top:3px;}
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+  .reveal-stagger.in-view .reveal-child:nth-child(1){transition-delay:0s;}
+  .reveal-stagger.in-view .reveal-child:nth-child(2){transition-delay:.08s;}
+  .reveal-stagger.in-view .reveal-child:nth-child(3){transition-delay:.16s;}
+  .reveal-stagger.in-view .reveal-child:nth-child(4){transition-delay:.24s;}
+  .reveal-stagger.in-view .reveal-child:nth-child(5){transition-delay:.32s;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+  }
+
+  /* ===== CARD HOVER LIFT ===== */
+  .card, .result-link, .senior-card{transition:transform .2s ease, box-shadow .2s ease;}
+  .card:hover{transform:translateY(-4px); box-shadow:0 10px 0 rgba(6,26,34,0.06);}
+
+  /* ===== ACTIVE NAV ===== */
+  nav.links a.active{background:var(--green); color:var(--white);}
+
+  /* ===== ANIMATED WAVES ===== */
+  .wave svg .wave-path{animation:waveShift 9s ease-in-out infinite;}
+  @keyframes waveShift{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(6px);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .wave svg .wave-path{animation:none;}
+  }
+
+  /* ===== SECTION SHELL ===== */
+  section{padding:60px 24px 70px;}
+  .section-head{margin-bottom:34px; max-width:680px;}
+  .section-head h2{font-size:clamp(1.7rem, 3.6vw, 2.5rem); color:var(--ink);}
+  .section-head p{color:#41473c; margin-top:10px; font-size:1rem;}
+  .section-deep{background:var(--deep); color:var(--white);}
+  .section-deep .section-head h2{color:var(--white);}
+  .section-deep .section-head p{color:#c5d4bd;}
+  .section-tint{background:var(--mist);}
+
+  /* ===== CARD ===== */
+  .card{
+    background:var(--white); border:1px solid #dde3d6; border-radius:8px;
+    padding:24px; position:relative; box-shadow:0 3px 0 rgba(6,26,34,0.08);
+    border-top:5px solid var(--green);
+  }
+  .card.alt{border-top-color:var(--teal);}
+
+  /* ===== SCHEDULE ===== */
+  .schedule-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media (max-width:880px){.schedule-grid{grid-template-columns:1fr;}}
+  .day-card .date{font-family:'Space Mono',monospace; color:var(--teal); font-size:0.78rem; font-weight:700; letter-spacing:0.5px; text-transform:uppercase;}
+  .day-card h3{font-size:1.4rem; margin:8px 0 16px; color:var(--ink);}
+  .day-card .row{display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid #e6f0f1; font-size:0.94rem;}
+  .day-card .row:last-of-type{border-bottom:none;}
+  .day-card .row .t{font-family:'Space Mono',monospace; color:var(--ink); font-weight:700;}
+  .note{
+    margin-top:16px; font-size:0.85rem; background:#eaf9ef; border:1px solid var(--green);
+    color:#0b5a2c; padding:10px 12px; border-radius:4px;
+  }
+
+  /* ===== BUTTON ===== */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; background:var(--green);
+    color:var(--white); text-decoration:none; font-family:'Space Mono',monospace; font-weight:700;
+    font-size:0.8rem; letter-spacing:0.6px; text-transform:uppercase; padding:13px 24px; border-radius:4px;
+    border:2px solid var(--green); transition:all .15s;
+  }
+  .btn:hover{background:var(--ink); border-color:var(--ink);}
+  .btn.outline{background:transparent; color:var(--ink); border-color:var(--ink);}
+  .btn.outline:hover{background:var(--ink); color:var(--white);}
+  .btn.on-dark{color:var(--deep); background:var(--white); border-color:var(--white);}
+  .btn.on-dark:hover{background:transparent; color:var(--white);}
+
+  /* ===== DIRECTIONS ===== */
+  .directions-stack{max-width:640px; margin:0 auto;}
+  .info-block{background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.25); border-radius:6px; padding:26px; margin-bottom:16px;}
+  .info-block h3{font-size:1.05rem; margin-bottom:10px; color:var(--white); font-family:'Anton',sans-serif;}
+  .info-block p{color:#d7e0cf; font-size:0.96rem;}
+  .parking-alert{
+    background:#16241A; border:1px solid var(--aqua); border-radius:6px; padding:22px; color:#E7ECDF;
+  }
+  .parking-alert strong{color:var(--aqua); font-family:'Anton',sans-serif;}
+
+  /* ===== EVENTS ===== */
+  .events-note{
+    background:var(--white); border:2px dashed var(--teal); border-radius:6px; padding:20px 22px;
+    margin-bottom:26px; font-size:0.92rem; color:#41473c;
+  }
+  .events-note strong{color:var(--green-deep);}
+  .table-scroll{overflow-x:auto; border:1px solid #dde3d6; border-radius:6px;}
+  table.plain{width:100%; border-collapse:collapse; min-width:680px; font-size:0.88rem; background:var(--white);}
+  table.plain thead th{
+    background:var(--deep); color:var(--white); text-align:left; padding:12px 14px;
+    font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.5px; font-size:0.7rem; white-space:nowrap;
+  }
+  table.plain tbody td{padding:11px 14px; border-bottom:1px solid #e8ece2; vertical-align:top;}
+  table.plain tbody tr:nth-child(even){background:#f5fbfb;}
+  table.plain td.evtnum{font-family:'Space Mono',monospace; color:var(--green-deep); font-weight:700; white-space:nowrap;}
+
+  /* ===== RECORDS ===== */
+  .records-controls{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:20px;}
+  .records-controls input{
+    flex:1 1 260px; padding:12px 14px; border:2px solid var(--ink); border-radius:4px;
+    background:var(--white); color:var(--ink); font-family:'Space Mono',monospace; font-size:0.88rem;
+  }
+  .records-controls input::placeholder{color:#8c9385;}
+  table.records{width:100%; border-collapse:collapse; min-width:820px; font-size:0.84rem; background:var(--white);}
+  table.records thead th{
+    position:sticky; top:0; background:var(--deep); color:var(--white);
+    text-align:left; padding:12px 14px; font-family:'Space Mono',monospace;
+    text-transform:uppercase; letter-spacing:0.5px; font-size:0.7rem; white-space:nowrap;
+  }
+  table.records tbody td{padding:11px 14px; border-bottom:1px solid #e8ece2; vertical-align:top;}
+  table.records tbody tr:nth-child(even){background:#f5fbfb;}
+  table.records tbody tr:hover{background:#e4f7ea;}
+  table.records td.time{font-family:'Space Mono',monospace; color:var(--green-deep); font-weight:700; white-space:nowrap;}
+  table.records td.evt{font-family:'Space Mono',monospace; color:var(--teal); white-space:nowrap; font-weight:700;}
+  .foot-note{font-size:0.78rem; color:#767d70; margin-top:14px;}
+
+  /* ===== AWARDS ===== */
+  .awards-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
+  @media (max-width:880px){.awards-grid{grid-template-columns:1fr;}}
+  .award-card h3{font-size:1.1rem; margin-bottom:10px; color:var(--ink);}
+  .award-card p{color:#41473c; font-size:0.94rem;}
+  .award-link{
+    margin-top:34px; padding:24px; background:var(--white); border:2px dashed var(--green);
+    border-radius:6px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .award-link h3{font-family:'Anton',sans-serif; margin-bottom:6px; font-size:1.05rem;}
+
+  /* ===== CLASS OF 2026 ===== */
+  .seniors-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:20px;}
+  @media (max-width:1000px){.seniors-grid{grid-template-columns:repeat(3,1fr);}}
+  @media (max-width:640px){.seniors-grid{grid-template-columns:repeat(2,1fr);}}
+  .senior-card{
+    background:rgba(255,255,255,0.06); border:2px dashed rgba(255,255,255,0.35); border-radius:6px; padding:16px; text-align:center;
+  }
+  .senior-photo{
+    width:100%; aspect-ratio:1/1; border-radius:50%; background:rgba(255,255,255,0.08);
+    display:flex; align-items:center; justify-content:center; margin-bottom:12px;
+    border:2px solid rgba(255,255,255,0.35); color:rgba(255,255,255,0.5); font-family:'Anton',sans-serif; font-size:2rem;
+  }
+  .senior-card .name{font-weight:700; color:var(--white); font-size:0.95rem; margin-bottom:4px; font-family:'Anton',sans-serif; text-transform:uppercase;}
+  .senior-card .team{font-family:'Space Mono',monospace; font-size:0.68rem; color:var(--aqua); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;}
+  .senior-card .bio{font-size:0.78rem; color:#cdd8c5;}
+  .add-senior{
+    border:2px dashed rgba(255,255,255,0.35); border-radius:6px; display:flex; align-items:center; justify-content:center;
+    color:rgba(255,255,255,0.55); font-size:0.85rem; text-align:center; padding:16px; min-height:100%;
+  }
+
+  /* ===== THANK YOU ===== */
+  .thanks-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
+  @media (max-width:880px){.thanks-grid{grid-template-columns:1fr;}}
+  .thanks-card h3{font-size:1.05rem; margin-bottom:14px; color:var(--ink); font-family:'Anton',sans-serif;}
+  .thanks-card ul{list-style:none;}
+  .thanks-card li{padding:9px 0; border-bottom:1px solid #e8ece2; font-size:0.92rem; color:#232620;}
+  .thanks-card li:last-child{border-bottom:none;}
+  .thanks-card li em{color:#8c9385; font-style:normal;}
+
+  /* ===== RESULTS ===== */
+  .results-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  @media (max-width:880px){.results-grid{grid-template-columns:repeat(2,1fr);}}
+  .result-link{
+    background:var(--white); border:1px solid #dde3d6; border-radius:6px; padding:22px;
+    text-decoration:none; display:block; transition:border-color .15s, transform .15s;
+  }
+  .result-link:hover{border-color:var(--green); transform:translateY(-2px);}
+  .result-link .tag{font-family:'Space Mono',monospace; font-size:0.66rem; color:var(--teal); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; display:block; font-weight:700;}
+  .result-link h4{color:var(--ink); font-size:1.02rem; font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase;}
+  .result-link .status{font-size:0.78rem; color:#8c9385; margin-top:6px; font-family:'Space Mono',monospace;}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--ink); color:#8c9385; padding:34px 24px; text-align:center; font-size:0.82rem;}
+  footer .fbrand{font-family:'Anton',sans-serif; color:var(--white); font-size:1.1rem; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <a href="#home" class="brand">Hub Lakes <span class="swash">2026</span></a>
+    <button class="navToggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
+    <nav class="links" id="navLinks">
+      <a href="#schedule">Schedule</a>
+      <a href="#directions">Directions</a>
+      <a href="#events">Events</a>
+      <a href="#records">Records</a>
+      <a href="#awards">Awards</a>
+      <a href="#class-of-2026">Class of 2026</a>
+      <a href="#thank-you">Thank You</a>
+      <a href="#results">Results</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="ripples"></div>
+  <div class="wrap">
+    <div>
+      <span class="banner-label">Indian Lake Swim Club Presents</span>
+      <h1>Hub Lakes<br><em>Swim</em> Championships</h1>
+      <p class="sub">Three days of racing across the Hub Lakes league &mdash; every age group, every lake, one crown.</p>
+      <div class="countdown" id="countdown" aria-live="polite">
+        <div class="cd-unit"><span class="cd-num" id="cd-days">00</span><span class="cd-label">Days</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">Hrs</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-mins">00</span><span class="cd-label">Min</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-secs">00</span><span class="cd-label">Sec</span></div>
+      </div>
+    </div>
+    <div class="lane-badge">
+      <div class="inner">
+        <div class="yr">2026</div>
+        <div class="dates">JUL 31 &ndash; AUG 2</div>
+        <div class="loc">Indian Lake &middot; Denville NJ</div>
+      </div>
+    </div>
+  </div>
+  <div class="wave">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wave-path" d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,60 L0,60 Z" fill="#FFFFFF"/>
+    </svg>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="banner-label">When</span>
+      <h2>Meet schedule</h2>
+      <p>Warm-up and start times below. Please arrive with plenty of time to check in and warm up.</p>
+    </div>
+    <div class="schedule-grid">
+      <div class="card day-card">
+        <span class="date">Friday, July 31</span>
+        <h3>Distance Session</h3>
+        <div class="row"><span>Warm-up</span><span class="t">6:30 PM</span></div>
+        <div class="row"><span>Start</span><span class="t">7:00 PM</span></div>
+        <div class="note">Swimmers must provide their own timers for distance events.</div>
+      </div>
+      <div class="card alt day-card">
+        <span class="date">Saturday, August 1</span>
+        <h3>Prelims</h3>
+        <div class="row"><span>Warm-up</span><span class="t">8:00 AM</span></div>
+        <div class="row"><span>Start</span><span class="t">9:00 AM</span></div>
+      </div>
+      <div class="card day-card">
+        <span class="date">Sunday, August 2</span>
+        <h3>Finals &amp; Relays</h3>
+        <div class="row"><span>Parade of Champions</span><span class="t">9:30 AM</span></div>
+        <div class="row"><span>Warm-up</span><span class="t">10:00 AM</span></div>
+        <div class="row"><span>Start</span><span class="t">10:30 AM</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#0E1F14"/>
+  </svg>
+</div>
+
+<!-- DIRECTIONS -->
+<section class="section-deep" id="directions">
+  <div class="wrap">
+    <div class="section-head" style="margin-left:auto; margin-right:auto; text-align:center;">
+      <span class="banner-label">Getting there</span>
+      <h2>Directions &amp; parking</h2>
+    </div>
+    <div class="directions-stack">
+      <div class="info-block">
+        <h3>Address</h3>
+        <p>91 East Shore Road<br>Denville, NJ 07834</p>
+        <div style="margin-top:14px;">
+          <a class="btn on-dark" href="https://www.google.com/maps/search/?api=1&query=91+East+Shore+Road+Denville+NJ+07834" target="_blank" rel="noopener">Get Directions &rarr;</a>
+        </div>
+      </div>
+      <div class="parking-alert">
+        <strong>Parking:</strong> Please park on the street. The parking lot at Indian Lake is reserved for coaches and officials only.
+      </div>
+    </div>
+  </div>
+  <div class="wave">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wave-path" d="M0,30 C150,0 350,60 600,30 C850,0 1050,60 1200,30 L1200,60 L0,60 Z" fill="#FFFFFF"/>
+    </svg>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="banner-label">What</span>
+      <h2>Event order</h2>
+      <p>The full event list for all three sessions, printed below.</p>
+    </div>
+    <div class="records-controls">
+      <input type="text" id="eventSearch" placeholder="Search events&hellip; e.g. &quot;Breast&quot; or &quot;11-12&quot;">
+    </div>
+    <div class="table-scroll">
+      <table class="plain" id="eventsTable">
+        <thead>
+          <tr><th>Event #</th><th>Event</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="evtnum">1</td><td>Mixed 8&amp;U 100 Medley Relay</td></tr>
+          <tr><td class="evtnum">2</td><td>Mixed 9-10 100 Medley Relay</td></tr>
+          <tr><td class="evtnum">3</td><td>Mixed 11-12 200 Medley Relay</td></tr>
+          <tr><td class="evtnum">4</td><td>Mixed 13-14 200 Medley Relay</td></tr>
+          <tr><td class="evtnum">5</td><td>Mixed 15-19 200 Medley Relay</td></tr>
+          <tr><td class="evtnum">6</td><td>Male 18&amp;O 200 Medley Relay</td></tr>
+          <tr><td class="evtnum">7</td><td>Female 18&amp;O 200 Medley Relay</td></tr>
+          <tr><td class="evtnum">8</td><td>Male 6&amp;U 25 Free</td></tr>
+          <tr><td class="evtnum">9</td><td>Female 6&amp;U 25 Free</td></tr>
+          <tr><td class="evtnum">10</td><td>Male 7-8 25 Free</td></tr>
+          <tr><td class="evtnum">11</td><td>Female 7-8 25 Free</td></tr>
+          <tr><td class="evtnum">12</td><td>Male 13-18 100 IM</td></tr>
+          <tr><td class="evtnum">13</td><td>Female 13-18 100 IM</td></tr>
+          <tr><td class="evtnum">14</td><td>Male 9-10 50 Free</td></tr>
+          <tr><td class="evtnum">15</td><td>Female 9-10 50 Free</td></tr>
+          <tr><td class="evtnum">16</td><td>Male 11-12 50 Free</td></tr>
+          <tr><td class="evtnum">17</td><td>Female 11-12 50 Free</td></tr>
+          <tr><td class="evtnum">18</td><td>Male 13-14 50 Free</td></tr>
+          <tr><td class="evtnum">19</td><td>Female 13-14 50 Free</td></tr>
+          <tr><td class="evtnum">20</td><td>Male 15-19 50 Free</td></tr>
+          <tr><td class="evtnum">21</td><td>Female 15-19 50 Free</td></tr>
+          <tr><td class="evtnum">22</td><td>Male 8&amp;U 25 Breast</td></tr>
+          <tr><td class="evtnum">23</td><td>Female 8&amp;U 25 Breast</td></tr>
+          <tr><td class="evtnum">24</td><td>Male 9-10 50 Breast</td></tr>
+          <tr><td class="evtnum">25</td><td>Female 9-10 50 Breast</td></tr>
+          <tr><td class="evtnum">26</td><td>Male 11-12 50 Breast</td></tr>
+          <tr><td class="evtnum">27</td><td>Female 11-12 50 Breast</td></tr>
+          <tr><td class="evtnum">28</td><td>Male 13-14 50 Breast</td></tr>
+          <tr><td class="evtnum">29</td><td>Female 13-14 50 Breast</td></tr>
+          <tr><td class="evtnum">30</td><td>Male 15-19 50 Breast</td></tr>
+          <tr><td class="evtnum">31</td><td>Female 15-19 50 Breast</td></tr>
+          <tr><td class="evtnum">32</td><td>Male 18&amp;O 200 Free Relay</td></tr>
+          <tr><td class="evtnum">33</td><td>Female 18&amp;O 200 Free Relay</td></tr>
+          <tr><td class="evtnum">34</td><td>Male 13-19 100 Free</td></tr>
+          <tr><td class="evtnum">35</td><td>Female 13-19 100 Free</td></tr>
+          <tr><td class="evtnum">36</td><td>Male 12&amp;U 100 IM</td></tr>
+          <tr><td class="evtnum">37</td><td>Female 12&amp;U 100 IM</td></tr>
+          <tr><td class="evtnum">38</td><td>Male 6&amp;U 25 Back</td></tr>
+          <tr><td class="evtnum">39</td><td>Female 6&amp;U 25 Back</td></tr>
+          <tr><td class="evtnum">40</td><td>Male 7-8 25 Back</td></tr>
+          <tr><td class="evtnum">41</td><td>Female 7-8 25 Back</td></tr>
+          <tr><td class="evtnum">42</td><td>Male 9-10 50 Back</td></tr>
+          <tr><td class="evtnum">43</td><td>Female 9-10 50 Back</td></tr>
+          <tr><td class="evtnum">44</td><td>Male 11-12 50 Back</td></tr>
+          <tr><td class="evtnum">45</td><td>Female 11-12 50 Back</td></tr>
+          <tr><td class="evtnum">46</td><td>Male 13-14 50 Back</td></tr>
+          <tr><td class="evtnum">47</td><td>Female 13-14 50 Back</td></tr>
+          <tr><td class="evtnum">48</td><td>Male 15-19 50 Back</td></tr>
+          <tr><td class="evtnum">49</td><td>Female 15-19 50 Back</td></tr>
+          <tr><td class="evtnum">50</td><td>Male 8&amp;U 25 Fly</td></tr>
+          <tr><td class="evtnum">51</td><td>Female 8&amp;U 25 Fly</td></tr>
+          <tr><td class="evtnum">52</td><td>Male 9-10 25 Fly</td></tr>
+          <tr><td class="evtnum">53</td><td>Female 9-10 25 Fly</td></tr>
+          <tr><td class="evtnum">54</td><td>Male 11-12 50 Fly</td></tr>
+          <tr><td class="evtnum">55</td><td>Female 11-12 50 Fly</td></tr>
+          <tr><td class="evtnum">56</td><td>Male 13-14 50 Fly</td></tr>
+          <tr><td class="evtnum">57</td><td>Female 13-14 50 Fly</td></tr>
+          <tr><td class="evtnum">58</td><td>Male 15-19 50 Fly</td></tr>
+          <tr><td class="evtnum">59</td><td>Female 15-19 50 Fly</td></tr>
+          <tr><td class="evtnum">60</td><td>Mixed 6&amp;U 100 Free Relay</td></tr>
+          <tr><td class="evtnum">61</td><td>Mixed 8&amp;U 100 Free Relay</td></tr>
+          <tr><td class="evtnum">62</td><td>Male 9-10 200 Free Relay</td></tr>
+          <tr><td class="evtnum">63</td><td>Female 9-10 200 Free Relay</td></tr>
+          <tr><td class="evtnum">64</td><td>Male 11-12 200 Free Relay</td></tr>
+          <tr><td class="evtnum">65</td><td>Female 11-12 200 Free Relay</td></tr>
+          <tr><td class="evtnum">66</td><td>Male 13-14 200 Free Relay</td></tr>
+          <tr><td class="evtnum">67</td><td>Female 13-14 200 Free Relay</td></tr>
+          <tr><td class="evtnum">68</td><td>Male 15-19 200 Free Relay</td></tr>
+          <tr><td class="evtnum">69</td><td>Female 15-19 200 Free Relay</td></tr>
+          <tr><td class="evtnum">70</td><td>Male 35&amp;O 100 Free Relay</td></tr>
+          <tr><td class="evtnum">71</td><td>Female 35&amp;O 100 Free Relay</td></tr>
+          <tr><td class="evtnum">72</td><td>Mixed 50&amp;O 100 Free Relay</td></tr>
+          <tr><td class="evtnum">73</td><td>Male 12&amp;O 400 Free</td></tr>
+          <tr><td class="evtnum">74</td><td>Female 12&amp;O 400 Free</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="foot-note">Pulled from the 2025 event order &mdash; update event numbers here if the 2026 sheet changes.</p>
+  </div>
+</section>
+
+<div class="wave">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#EEF1EA"/>
+  </svg>
+</div>
+
+<!-- RECORDS -->
+<section class="section-tint" id="records">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="banner-label">All-time marks</span>
+      <h2>Championship records</h2>
+      <p>Search by swimmer, team, or event name. Times marked (M) are meters, (Y) are yards.</p>
+    </div>
+    <div class="records-controls">
+      <input type="text" id="recordSearch" placeholder="Search records&hellip; e.g. &quot;Lynk&quot; or &quot;50 Free&quot;">
+    </div>
+    <div class="table-scroll">
+      <table class="records" id="recordsTable">
+        <thead>
+          <tr>
+            <th>Event #</th>
+            <th>Event</th>
+            <th>Time</th>
+            <th>Year</th>
+            <th>Swimmer / Team</th>
+            <th>Team</th>
+            <th>Lake Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="evt">1M</td><td>Mixed 8&amp;U 100 Medley Relay (M)</td><td class="time">1:27.12</td><td>2010</td><td>Mountain (M. Tarantola, W. Seijas, G. Tarantola, D. Van der Merwe)</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">1Y</td><td>Mixed 8&amp;U 100 Medley Relay (Y)</td><td class="time">1:20.30</td><td>1989</td><td>Indian (Reeves, Richards, Lodato, Pugliese)</td><td>Indian</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">2M</td><td>Mixed 9-10 100 Medley Relay (M)</td><td class="time">1:13.80</td><td>2017</td><td>Mountain (E. Park, J. Hernando, C. Tsang, L. Markowitz)</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">2Y</td><td>Mixed 9-10 100 Medley Relay (Y)</td><td class="time">1:02.90</td><td>2015</td><td>Mountain (E. Tsang, Z. Ferdico, L. Hann, O. Markowitz)</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">3</td><td>Mixed 11-12 200 Medley Relay</td><td class="time">2:15.04</td><td>2018</td><td>Mountain (M. Marino, R. Hirschfeld, O. Markowitz, R. Lalani)</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">4</td><td>Mixed 13-14 200 Medley Relay</td><td class="time">2:06.64</td><td>2019</td><td>Mountain (Z. Ferdico, O. Markowitz, L. Hann, L. Page)</td><td>Mountain</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">5</td><td>Mixed 15-18 200 Medley Relay</td><td class="time">2:00.02</td><td>2022</td><td>Mountain (L. Page, O. Markowitz, L. Hann, L. Lynk)</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">6</td><td>Boys 18&amp;O 200 Medley Relay</td><td class="time">1:59.67</td><td>1983</td><td>Mountain</td><td>Mountain</td><td>N/A</td></tr>
+          <tr><td class="evt">7</td><td>Girls 18&amp;O 200 Medley Relay</td><td class="time">2:14.25</td><td>2023</td><td>L. Page, J. Corbo, L. Hann, E. Fraser</td><td>Mountain</td><td>Indian</td></tr>
+          <tr><td class="evt">8M</td><td>Boys 6&amp;U 25 Free (M)</td><td class="time">26.37</td><td>2017</td><td>Marshall Cromwell</td><td>White Meadow</td><td>White Meadow</td></tr>
+          <tr><td class="evt">8Y</td><td>Boys 6&amp;U 25 Free (Y)</td><td class="time">21.11</td><td>2025</td><td>Ryden Paliukaitis</td><td>White Meadow</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">9M</td><td>Girls 6&amp;U 25 Free (M)</td><td class="time">23.14</td><td>2024</td><td>Raegan Lehrer</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">9Y</td><td>Girls 6&amp;U 25 Free (Y)</td><td class="time">22.33</td><td>2025</td><td>Nora Burmil</td><td>Cedar</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">10M</td><td>Boys 7-8 25 Free (M)</td><td class="time">16.50</td><td>1976</td><td>M. Byrnes</td><td>Arrowhead</td><td>N/A</td></tr>
+          <tr><td class="evt">10Y</td><td>Boys 7-8 25 Free (Y)</td><td class="time">15.00</td><td>1965 / 1968*</td><td>M. Parkins / J. Livingood</td><td>Mountain / Cedar</td><td>N/A</td></tr>
+          <tr><td class="evt">11M</td><td>Girls 7-8 25 Free (M)</td><td class="time">17.11</td><td>1984</td><td>Cathy Marucci</td><td>Indian</td><td>White Meadow</td></tr>
+          <tr><td class="evt">11Y</td><td>Girls 7-8 25 Free (Y)</td><td class="time">15.50</td><td>1983</td><td>Jennifer Divita</td><td>Indian</td><td>N/A</td></tr>
+          <tr><td class="evt">*12R</td><td>Men 13-18 200 IM (retired)</td><td class="time">2:17.19</td><td>1990</td><td>Sean Gowrie</td><td>White Meadow</td><td>Mountain</td></tr>
+          <tr><td class="evt">12M</td><td>Men 13-18 100 IM (M)</td><td class="time">1:02.00</td><td>2021</td><td>Liam Lynk</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">12Y</td><td>Men 13-18 100 IM (Y)</td><td class="time">54.06</td><td>2022</td><td>Liam Lynk</td><td>Mountain</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">*13R</td><td>Women 13-18 200 IM (retired)</td><td class="time">2:34.65</td><td>1990</td><td>Janet Worobel</td><td>Rock Ridge</td><td>Mountain</td></tr>
+          <tr><td class="evt">13M</td><td>Women 13-18 100 IM (M)</td><td class="time">1:14.05</td><td>2021</td><td>Caroline Weldon</td><td>Indian Lake</td><td>White Meadow</td></tr>
+          <tr><td class="evt">13Y</td><td>Women 13-18 100 IM (Y)</td><td class="time">1:02.43</td><td>2022</td><td>Lily Hann</td><td>Mountain</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">14</td><td>Boys 9-10 50 Free</td><td class="time">32.05</td><td>2015</td><td>Dylan Ostolaza</td><td>Pirate</td><td>Mountain</td></tr>
+          <tr><td class="evt">15</td><td>Girls 9-10 50 Free</td><td class="time">32.23</td><td>2015</td><td>Elizabeth Tsang</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">16</td><td>Boys 11-12 50 Free</td><td class="time">28.47</td><td>2003</td><td>Charlie Wang</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">17</td><td>Girls 11-12 50 Free</td><td class="time">29.20</td><td>1985</td><td>Janet Worobel</td><td>Rock Ridge</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">18</td><td>Boys 13-14 50 Free</td><td class="time">26.33</td><td>2022</td><td>Connor Johnson</td><td>Pirate</td><td>Mountain</td></tr>
+          <tr><td class="evt">19</td><td>Girls 13-14 50 Free</td><td class="time">29.74</td><td>2022</td><td>Serena Dickey</td><td>Mountain</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">20</td><td>Men 15-18 50 Free</td><td class="time">26.00</td><td>2021</td><td>Dylan Ostolaza</td><td>Pirate</td><td>White Meadow</td></tr>
+          <tr><td class="evt">21</td><td>Women 15-18 50 Free</td><td class="time">28.95</td><td>2022</td><td>Lily Hann</td><td>Mountain</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">22M</td><td>Boys 8&amp;U 25 Breast (M)</td><td class="time">22.72</td><td>2010</td><td>Will Seijas</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">22Y</td><td>Boys 8&amp;U 25 Breast (Y)</td><td class="time">19.60</td><td>1982</td><td>Geoff Standfast</td><td>Arrowhead</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">23M</td><td>Girls 8&amp;U 25 Breast (M)</td><td class="time">22.40</td><td>1979</td><td>Sherri Evey</td><td>White Meadow</td><td>N/A</td></tr>
+          <tr><td class="evt">23Y</td><td>Girls 8&amp;U 25 Breast (Y)</td><td class="time">20.54</td><td>2016</td><td>Lauren Markowitz</td><td>Mountain</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">24</td><td>Boys 9-10 50 Breast</td><td class="time">41.78</td><td>2001</td><td>Daniel Pulitano</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">25</td><td>Girls 9-10 50 Breast</td><td class="time">43.03</td><td>2016</td><td>Kelly Le</td><td>Pirate</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">26</td><td>Boys 11-12 50 Breast</td><td class="time">36.03</td><td>2017</td><td>Zach Ferdico</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">27</td><td>Girls 11-12 50 Breast</td><td class="time">38.39</td><td>2018</td><td>Mira Marino</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">28</td><td>Boys 13-14 50 Breast</td><td class="time">33.15</td><td>2022</td><td>Connor Johnson</td><td>Pirate</td><td>Mountain</td></tr>
+          <tr><td class="evt">29</td><td>Girls 13-14 50 Breast</td><td class="time">36.99</td><td>2018</td><td>Ella DiScala</td><td>White Meadow</td><td>Mountain</td></tr>
+          <tr><td class="evt">30</td><td>Men 15-18 50 Breast</td><td class="time">31.53</td><td>2022</td><td>Liam Lynk</td><td>Mountain</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">31</td><td>Women 15-18 50 Breast</td><td class="time">35.85</td><td>1988</td><td>Sherri Evey</td><td>White Meadow</td><td>White Meadow</td></tr>
+          <tr><td class="evt">32</td><td>Boys 18&amp;O 200 Free Relay</td><td class="time">1:46.00</td><td>1981</td><td>Indian</td><td>Indian</td><td>N/A</td></tr>
+          <tr><td class="evt">33</td><td>Girls 18&amp;O 200 Free Relay</td><td class="time">2:02.25</td><td>2023</td><td>L. Page, J. Corbo, L. Hann, E. Fraser</td><td>Mountain</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">34</td><td>Men 13-18 100 Free</td><td class="time">56.77</td><td>1988</td><td>Sean Gowrie</td><td>White Meadow</td><td>White Meadow</td></tr>
+          <tr><td class="evt">35</td><td>Women 13-18 100 Free</td><td class="time">1:03.78</td><td>2021</td><td>Lorelai Page</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">36M</td><td>Boys 12&amp;U 100 IM (M)</td><td class="time">1:10.89</td><td>2017</td><td>Zach Ferdico</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">36Y</td><td>Boys 12&amp;U 100 IM (Y)</td><td class="time">1:03.50</td><td>2003</td><td>Daniel Pulitano</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">37M</td><td>Girls 12&amp;U 100 IM (M)</td><td class="time">1:13.44</td><td>2017</td><td>Lorelai Page</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">37Y</td><td>Girls 12&amp;U 100 IM (Y)</td><td class="time">1:05.81</td><td>2018</td><td>Mira Marino</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">38M</td><td>Boys 6&amp;U 25 Back (M)</td><td class="time">27.69</td><td>2024</td><td>Ryden Paliukaitis</td><td>White Meadow</td><td>White Meadow</td></tr>
+          <tr><td class="evt">38Y</td><td>Boys 6&amp;U 25 Back (Y)</td><td class="time">22.99</td><td>2025</td><td>Ryden Paliukaitis</td><td>White Meadow</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">39M</td><td>Girls 6&amp;U 25 Back (M)</td><td class="time">26.04</td><td>2024</td><td>Raegan Lehrer</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">39Y</td><td>Girls 6&amp;U 25 Back (Y)</td><td class="time">26.70</td><td>2018</td><td>Nora Burmil</td><td>Cedar</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">40M</td><td>Boys 7-8 25 Back (M)</td><td class="time">21.83</td><td>1984</td><td>A. Meravi</td><td>Lake Hiawatha</td><td>White Meadow</td></tr>
+          <tr><td class="evt">40Y</td><td>Boys 7-8 25 Back (Y)</td><td class="time">18.30</td><td>1982</td><td>Geoff Standfast</td><td>Arrowhead</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">41M</td><td>Girls 7-8 25 Back (M)</td><td class="time">20.73</td><td>1984</td><td>Cathy Marucci</td><td>Indian</td><td>White Meadow</td></tr>
+          <tr><td class="evt">41Y</td><td>Girls 7-8 25 Back (Y)</td><td class="time">18.28</td><td>2016</td><td>Lauren Markowitz</td><td>Mountain</td><td>Indian Lake</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="foot-note">*Events marked with an asterisk (12R, 13R) are retired events kept for historical reference. Event 10Y reflects a tie between two swimmers.</p>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="banner-label">Honors</span>
+      <h2>Championship awards</h2>
+      <p>Presented each year to swimmers and volunteers who embody the spirit of Hub Lakes swimming.</p>
+    </div>
+    <div class="awards-grid">
+      <div class="card award-card">
+        <h3>David Gibson Memorial Award</h3>
+        <p>Given to the championship's outstanding male swimmer. David swam for Lake Hiawatha in the Hub Lakes league from age six and became an outstanding swimmer at the local and national level. He won the O'Connell award in 2005 and was lost in an auto accident later that year. The award has since been re-dedicated in his memory, representing the spirit, enthusiasm, and commitment of a Hub Lakes swimmer.</p>
+      </div>
+      <div class="card alt award-card">
+        <h3>The O'Connell Award</h3>
+        <p>Presented to the outstanding female swimmer, based on points earned, records broken, and sportsmanship. The winner is chosen by a vote from the coaches of all the lakes.</p>
+      </div>
+      <div class="card alt award-card">
+        <h3>Claire Murray Award</h3>
+        <p>Voted on and presented to the outstanding female summer swimmer. Claire Murray was a lifelong member of Rock Ridge Lake until her unexpected passing in 2020. She is remembered as a key member of the 35-and-over women's relay team, known for a legendary start.</p>
+      </div>
+      <div class="card award-card">
+        <h3>The La Mothe Award</h3>
+        <p>Dave La Mothe was the founding father of the Lake Parsippany swim team and an outstanding parent volunteer who devoted his time to Lake Parsippany and all of Hub Lakes swimming. Presented to a parent who unselfishly devotes time, talent, and enthusiasm to the sport.</p>
+      </div>
+      <div class="card award-card">
+        <h3>Bob Williams Award</h3>
+        <p>Voted on and presented to the outstanding male and female summer swimmer. Bob Williams was the driving force in Rock Ridge swimming for many years and a promoter of the "summer" swimmer in a league populated with year-round swimmers.</p>
+      </div>
+    </div>
+    <div class="award-link">
+      <div>
+        <h3>Past award winners</h3>
+        <p style="color:#41473c; font-size:0.9rem;">Browse the full history of award recipients.</p>
+      </div>
+      <a class="btn" href="https://docs.google.com/spreadsheets/d/11WrI5ossAv1uXEkcL26TIbQXZ13-xQLvyQBi7W45_98/edit?usp=sharing" target="_blank" rel="noopener">Open Table &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<div class="wave">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path" d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,60 L0,60 Z" fill="#0E1F14"/>
+  </svg>
+</div>
+
+<!-- CLASS OF 2026 -->
+<section class="section-deep" id="class-of-2026">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="banner-label">Senior tribute</span>
+      <h2>Class of 2026</h2>
+      <p>Placeholder cards below &mdash; swap in each senior's photo, name, team, and bio.</p>
+    </div>
+    <div class="seniors-grid">
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
+      <div class="add-senior">+ Add another senior</div>
+    </div>
+  </div>
+  <div class="wave">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#FFFFFF"/>
+    </svg>
+  </div>
+</section>
+
+<!-- THANK YOU -->
+<section id="thank-you">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="banner-label">Gratitude</span>
+      <h2>Thank you</h2>
+      <p>This meet doesn't happen without the people below. Replace the placeholders with this year's names.</p>
+    </div>
+    <div class="thanks-grid">
+      <div class="card thanks-card">
+        <h3>Coaches</h3>
+        <ul>
+          <li>[Coach Name] &ndash; <em>[Lake Team]</em></li>
+          <li>[Coach Name] &ndash; <em>[Lake Team]</em></li>
+          <li>[Coach Name] &ndash; <em>[Lake Team]</em></li>
+          <li>[Coach Name] &ndash; <em>[Lake Team]</em></li>
+          <li>[Coach Name] &ndash; <em>[Lake Team]</em></li>
+          <li>[Coach Name] &ndash; <em>[Lake Team]</em></li>
+        </ul>
+      </div>
+      <div class="card alt thanks-card">
+        <h3>Parent Delegates</h3>
+        <ul>
+          <li>[Parent Delegate Name] &ndash; <em>[Lake Team]</em></li>
+          <li>[Parent Delegate Name] &ndash; <em>[Lake Team]</em></li>
+          <li>[Parent Delegate Name] &ndash; <em>[Lake Team]</em></li>
+          <li>[Parent Delegate Name] &ndash; <em>[Lake Team]</em></li>
+          <li>[Parent Delegate Name] &ndash; <em>[Lake Team]</em></li>
+          <li>[Parent Delegate Name] &ndash; <em>[Lake Team]</em></li>
+        </ul>
+      </div>
+      <div class="card thanks-card">
+        <h3>Chairperson</h3>
+        <ul>
+          <li>[Chairperson Name]</li>
+        </ul>
+      </div>
+      <div class="card alt thanks-card">
+        <h3>Special Thanks</h3>
+        <ul>
+          <li>[Name / Role] &ndash; <em>[Contribution]</em></li>
+          <li>[Name / Role] &ndash; <em>[Contribution]</em></li>
+          <li>[Name / Role] &ndash; <em>[Contribution]</em></li>
+          <li>[Name / Role] &ndash; <em>[Contribution]</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="section-tint" id="results">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="banner-label">Documents</span>
+      <h2>Sheets &amp; results</h2>
+      <p>Links will go live as each document is posted before, during, and after the meet.</p>
+    </div>
+    <div class="results-grid">
+      <a class="result-link" href="#">
+        <span class="tag">Before Meet</span>
+        <h4>Psych Sheet</h4>
+        <div class="status">Posting soon</div>
+      </a>
+      <a class="result-link" href="#">
+        <span class="tag">Day 2</span>
+        <h4>Heat Sheet</h4>
+        <div class="status">Posting soon</div>
+      </a>
+      <a class="result-link" href="#">
+        <span class="tag">Day 2</span>
+        <h4>Prelim Results</h4>
+        <div class="status">Posting soon</div>
+      </a>
+      <a class="result-link" href="#">
+        <span class="tag">Day 3</span>
+        <h4>Final Results</h4>
+        <div class="status">Posting soon</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fbrand">Hub Lakes Swim Championships</div>
+  <div>July 31 &ndash; August 2, 2026 &middot; Indian Lake &middot; Denville, NJ</div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  const search = document.getElementById('recordSearch');
+  const rows = document.querySelectorAll('#recordsTable tbody tr');
+  search.addEventListener('input', () => {
+    const q = search.value.trim().toLowerCase();
+    rows.forEach(r => {
+      r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
+
+  const eventSearch = document.getElementById('eventSearch');
+  const eventRows = document.querySelectorAll('#eventsTable tbody tr');
+  eventSearch.addEventListener('input', () => {
+    const q = eventSearch.value.trim().toLowerCase();
+    eventRows.forEach(r => {
+      r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
+
+  // ---- Countdown to Friday distance session (7/31/2026 6:30 PM local) ----
+  const meetStart = new Date('2026-07-31T18:30:00');
+  const dEl = document.getElementById('cd-days');
+  const hEl = document.getElementById('cd-hours');
+  const mEl = document.getElementById('cd-mins');
+  const sEl = document.getElementById('cd-secs');
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tickCountdown(){
+    const diff = meetStart - new Date();
+    if(diff <= 0){
+      dEl.textContent = hEl.textContent = mEl.textContent = sEl.textContent = '00';
+      return;
+    }
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    dEl.textContent = pad(days);
+    hEl.textContent = pad(hours);
+    mEl.textContent = pad(mins);
+    sEl.textContent = pad(secs);
+  }
+  tickCountdown();
+  setInterval(tickCountdown, 1000);
+
+  // ---- Scroll reveal ----
+  const revealTargets = document.querySelectorAll('.section-head, .card, .senior-card, .result-link');
+  revealTargets.forEach(el => el.classList.add('reveal'));
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealTargets.forEach(el => revealObserver.observe(el));
+
+  // ---- Active nav link on scroll ----
+  const navAnchors = Array.from(navLinks.querySelectorAll('a'));
+  const sections = navAnchors.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = '#' + entry.target.id;
+      const link = navAnchors.find(a => a.getAttribute('href') === id);
+      if(!link) return;
+      if(entry.isIntersecting){
+        navAnchors.forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { threshold: 0, rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(sec => navObserver.observe(sec));
+</script>
+
+</body>
+</html>
