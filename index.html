@@ -98,12 +98,25 @@
       linear-gradient(160deg, var(--deep) 0%, var(--deep2) 45%, var(--teal) 100%);
     color:var(--white);
   }
-  .hero .ripples{position:absolute; inset:0; opacity:0.15; pointer-events:none;
-    background-image:
-      radial-gradient(circle, transparent 0, transparent 40px, rgba(255,255,255,0.5) 41px, transparent 42px),
-      radial-gradient(circle, transparent 0, transparent 70px, rgba(255,255,255,0.4) 71px, transparent 72px);
-    background-size:180px 180px, 260px 260px; background-position:10% 20%, 80% 60%;
+  .hero .bubbles{position:absolute; inset:0; overflow:hidden; pointer-events:none;}
+  .bubble{
+    position:absolute; border-radius:50%;
+    background:
+      radial-gradient(circle at 32% 26%, rgba(255,255,255,0.65), rgba(255,255,255,0.08) 35%, transparent 68%),
+      radial-gradient(circle at 60% 65%, rgba(255,255,255,0.06), transparent 70%);
+    border:1px solid rgba(255,255,255,0.16);
+    animation:bubbleFloat 12s ease-in-out infinite;
   }
+  @keyframes bubbleFloat{
+    0%,100%{transform:translateY(0) scale(1);}
+    50%{transform:translateY(-16px) scale(1.03);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .bubble{animation:none;}
+  }
+  /* hero wave breaks out of the section's horizontal padding so it reaches the true edges,
+     while staying inside .hero so the gradient/bubbles show through behind it */
+  .hero > .wave{margin:0 -24px; width:auto;}
   .hero .wrap{position:relative; z-index:2; padding-bottom:60px; display:grid; grid-template-columns:1.35fr 0.85fr; gap:40px; align-items:center;}
   @media (max-width:900px){.hero .wrap{grid-template-columns:1fr;}}
   .hero h1{
@@ -115,10 +128,25 @@
   }
   .lane-badge{
     width:210px; height:210px; border-radius:50%; margin:0 auto; position:relative;
-    background:var(--green); display:flex; align-items:center; justify-content:center; text-align:center;
-    border:6px solid var(--white); box-shadow:0 10px 26px rgba(0,0,0,0.28);
+    background:
+      radial-gradient(circle at 32% 24%, rgba(255,255,255,0.8), rgba(255,255,255,0.1) 22%, transparent 45%),
+      radial-gradient(circle at 72% 78%, rgba(255,255,255,0.14), transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(110,199,150,0.4), rgba(18,92,49,0.62) 78%);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    border:2px solid rgba(255,255,255,0.55);
+    box-shadow:
+      0 12px 28px rgba(0,0,0,0.28),
+      inset 0 0 26px rgba(255,255,255,0.2),
+      inset -16px -16px 30px rgba(0,0,0,0.18),
+      inset 10px 10px 18px rgba(255,255,255,0.12);
+    backdrop-filter:blur(3px);
   }
-  .lane-badge .inner{padding:14px;}
+  .lane-badge::after{
+    content:""; position:absolute; top:13%; left:20%; width:30%; height:16%;
+    background:rgba(255,255,255,0.75); border-radius:50%; filter:blur(5px);
+    transform:rotate(-25deg); pointer-events:none;
+  }
+  .lane-badge .inner{padding:14px; position:relative; z-index:1;}
   .lane-badge .yr{font-family:'Anton',sans-serif; font-size:2.3rem; color:var(--white); line-height:1;}
   .lane-badge .dates{font-family:'Space Mono',monospace; font-size:0.72rem; margin-top:8px; letter-spacing:0.5px; color:#e7f2e0;}
   .lane-badge .loc{font-family:'Space Mono',monospace; font-size:0.62rem; margin-top:8px; color:#dcefd4; text-transform:uppercase; letter-spacing:1px;}
@@ -224,10 +252,10 @@
     margin-bottom:26px; font-size:0.92rem; color:#41473c;
   }
   .events-note strong{color:var(--green-deep);}
-  .table-scroll{overflow-x:auto; border:1px solid #dde3d6; border-radius:6px;}
+  .table-scroll{overflow-x:auto; overflow-y:auto; max-height:520px; border:1px solid #dde3d6; border-radius:6px;}
   table.plain{width:100%; border-collapse:collapse; min-width:680px; font-size:0.88rem; background:var(--white);}
   table.plain thead th{
-    background:var(--deep); color:var(--white); text-align:left; padding:12px 14px;
+    position:sticky; top:0; background:var(--deep); color:var(--white); text-align:left; padding:12px 14px;
     font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.5px; font-size:0.7rem; white-space:nowrap;
   }
   table.plain tbody td{padding:11px 14px; border-bottom:1px solid #e8ece2; vertical-align:top;}
@@ -318,6 +346,8 @@
     <a href="#home" class="brand">Hub Lakes <span class="swash">2026</span></a>
     <button class="navToggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
     <nav class="links" id="navLinks">
+      <a href="#merch">Merch</a>
+      <a href="#concessions">Concessions</a>
       <a href="#schedule">Schedule</a>
       <a href="#directions">Directions</a>
       <a href="#events">Events</a>
@@ -332,7 +362,17 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="ripples"></div>
+  <div class="bubbles">
+    <span class="bubble" style="width:70px;height:70px;top:8%;left:6%;animation-duration:13s;animation-delay:0s;"></span>
+    <span class="bubble" style="width:34px;height:34px;top:22%;left:18%;animation-duration:9s;animation-delay:1.2s;"></span>
+    <span class="bubble" style="width:50px;height:50px;top:60%;left:12%;animation-duration:11s;animation-delay:2.4s;"></span>
+    <span class="bubble" style="width:90px;height:90px;top:65%;left:34%;animation-duration:15s;animation-delay:0.6s;"></span>
+    <span class="bubble" style="width:28px;height:28px;top:14%;left:46%;animation-duration:8s;animation-delay:3s;"></span>
+    <span class="bubble" style="width:60px;height:60px;top:78%;left:58%;animation-duration:12s;animation-delay:1.8s;"></span>
+    <span class="bubble" style="width:40px;height:40px;top:10%;left:70%;animation-duration:10s;animation-delay:2.2s;"></span>
+    <span class="bubble" style="width:76px;height:76px;top:48%;left:88%;animation-duration:14s;animation-delay:0.9s;"></span>
+    <span class="bubble" style="width:24px;height:24px;top:82%;left:80%;animation-duration:9.5s;animation-delay:3.6s;"></span>
+  </div>
   <div class="wrap">
     <div>
       <span class="banner-label">Indian Lake Swim Club Presents</span>
@@ -359,6 +399,70 @@
     </svg>
   </div>
 </section>
+
+<!-- MERCH -->
+<section id="merch">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="banner-label">Gear up</span>
+      <h2>Meet merch</h2>
+      <p>Hub Lakes 2026 t-shirts are available now through presale &mdash; order early to guarantee your size before the meet.</p>
+    </div>
+    <div class="award-link">
+      <div>
+        <h3>2026 Championship T-Shirt</h3>
+        <p style="color:#41473c; font-size:0.9rem;">Presale open now. [Add price, order deadline, and pickup details here.]</p>
+      </div>
+      <a class="btn" href="#" target="_blank" rel="noopener">Order Your Shirt &rarr;</a>
+      <!-- TODO: replace href="#" above with the t-shirt vendor's presale link -->
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:#FFFFFF;">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#EEF1EA"/>
+  </svg>
+</div>
+
+<!-- CONCESSIONS -->
+<section class="section-tint" id="concessions">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="banner-label">Fuel up</span>
+      <h2>Concessions</h2>
+      <p>Grab a bite between events. Cash and card accepted at the concessions table.</p>
+    </div>
+    <div class="thanks-grid">
+      <div class="card thanks-card">
+        <h3>Saturday, August 1</h3>
+        <ul>
+          <li>[Item] &ndash; <em>[Price]</em></li>
+          <li>[Item] &ndash; <em>[Price]</em></li>
+          <li>[Item] &ndash; <em>[Price]</em></li>
+          <li>[Item] &ndash; <em>[Price]</em></li>
+          <li>[Item] &ndash; <em>[Price]</em></li>
+        </ul>
+      </div>
+      <div class="card alt thanks-card">
+        <h3>Sunday, August 2</h3>
+        <ul>
+          <li>[Item] &ndash; <em>[Price]</em></li>
+          <li>[Item] &ndash; <em>[Price]</em></li>
+          <li>[Item] &ndash; <em>[Price]</em></li>
+          <li>[Item] &ndash; <em>[Price]</em></li>
+          <li>[Item] &ndash; <em>[Price]</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:#EEF1EA;">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path" d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,60 L0,60 Z" fill="#FFFFFF"/>
+  </svg>
+</div>
 
 <!-- SCHEDULE -->
 <section id="schedule">
@@ -393,7 +497,7 @@
   </div>
 </section>
 
-<div class="wave">
+<div class="wave" style="background:#FFFFFF;">
   <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#0E1F14"/>
   </svg>
@@ -419,19 +523,20 @@
       </div>
     </div>
   </div>
-  <div class="wave">
-    <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path class="wave-path" d="M0,30 C150,0 350,60 600,30 C850,0 1050,60 1200,30 L1200,60 L0,60 Z" fill="#FFFFFF"/>
-    </svg>
-  </div>
 </section>
+
+<div class="wave" style="background:#0E1F14;">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path" d="M0,30 C150,0 350,60 600,30 C850,0 1050,60 1200,30 L1200,60 L0,60 Z" fill="#FFFFFF"/>
+  </svg>
+</div>
 
 <!-- EVENTS -->
 <section id="events">
   <div class="wrap">
     <div class="section-head">
       <span class="banner-label">What</span>
-      <h2>Event order</h2>
+      <h2>Event Number</h2>
       <p>The full event list for all three sessions, printed below.</p>
     </div>
     <div class="records-controls">
@@ -524,7 +629,7 @@
   </div>
 </section>
 
-<div class="wave">
+<div class="wave" style="background:#FFFFFF;">
   <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#EEF1EA"/>
   </svg>
@@ -558,12 +663,12 @@
           <tr><td class="evt">1M</td><td>Mixed 8&amp;U 100 Medley Relay (M)</td><td class="time">1:27.12</td><td>2010</td><td>Mountain (M. Tarantola, W. Seijas, G. Tarantola, D. Van der Merwe)</td><td>Mountain</td><td>White Meadow</td></tr>
           <tr><td class="evt">1Y</td><td>Mixed 8&amp;U 100 Medley Relay (Y)</td><td class="time">1:20.30</td><td>1989</td><td>Indian (Reeves, Richards, Lodato, Pugliese)</td><td>Indian</td><td>Indian Lake</td></tr>
           <tr><td class="evt">2M</td><td>Mixed 9-10 100 Medley Relay (M)</td><td class="time">1:13.80</td><td>2017</td><td>Mountain (E. Park, J. Hernando, C. Tsang, L. Markowitz)</td><td>Mountain</td><td>White Meadow</td></tr>
-          <tr><td class="evt">2Y</td><td>Mixed 9-10 100 Medley Relay (Y)</td><td class="time">1:02.90</td><td>2015</td><td>Mountain (E. Tsang, Z. Ferdico, L. Hann, O. Markowitz)</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">2Y</td><td>Mixed 9-10 100 Medley Relay (Y)</td><td class="time">1:02.90</td><td>2015</td><td>Mountain (Elizabeth Tsang, Zack Ferdico, Lily Hann, Owen Markowitz)</td><td>Mountain</td><td>Mountain</td></tr>
           <tr><td class="evt">3</td><td>Mixed 11-12 200 Medley Relay</td><td class="time">2:15.04</td><td>2018</td><td>Mountain (M. Marino, R. Hirschfeld, O. Markowitz, R. Lalani)</td><td>Mountain</td><td>Mountain</td></tr>
-          <tr><td class="evt">4</td><td>Mixed 13-14 200 Medley Relay</td><td class="time">2:06.64</td><td>2019</td><td>Mountain (Z. Ferdico, O. Markowitz, L. Hann, L. Page)</td><td>Mountain</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">4</td><td>Mixed 13-14 200 Medley Relay</td><td class="time">2:06.64</td><td>2019</td><td>Mountain (Zack Ferdico, Owen Markowitz, Lily Hann, Lorelai Page)</td><td>Mountain</td><td>Indian Lake</td></tr>
           <tr><td class="evt">5</td><td>Mixed 15-18 200 Medley Relay</td><td class="time">2:00.02</td><td>2022</td><td>Mountain (L. Page, O. Markowitz, L. Hann, L. Lynk)</td><td>Mountain</td><td>Mountain</td></tr>
           <tr><td class="evt">6</td><td>Boys 18&amp;O 200 Medley Relay</td><td class="time">1:59.67</td><td>1983</td><td>Mountain</td><td>Mountain</td><td>N/A</td></tr>
-          <tr><td class="evt">7</td><td>Girls 18&amp;O 200 Medley Relay</td><td class="time">2:14.25</td><td>2023</td><td>L. Page, J. Corbo, L. Hann, E. Fraser</td><td>Mountain</td><td>Indian</td></tr>
+          <tr><td class="evt">7</td><td>Girls 18&amp;O 200 Medley Relay</td><td class="time">2:14.25</td><td>2023</td><td>Lorelai Page, Julia Corbo, Lily Hann, Elise Fraser</td><td>Mountain</td><td>Indian</td></tr>
           <tr><td class="evt">8M</td><td>Boys 6&amp;U 25 Free (M)</td><td class="time">26.37</td><td>2017</td><td>Marshall Cromwell</td><td>White Meadow</td><td>White Meadow</td></tr>
           <tr><td class="evt">8Y</td><td>Boys 6&amp;U 25 Free (Y)</td><td class="time">21.11</td><td>2025</td><td>Ryden Paliukaitis</td><td>White Meadow</td><td>Mountain Lakes</td></tr>
           <tr><td class="evt">9M</td><td>Girls 6&amp;U 25 Free (M)</td><td class="time">23.14</td><td>2024</td><td>Raegan Lehrer</td><td>Mountain</td><td>White Meadow</td></tr>
@@ -599,7 +704,7 @@
           <tr><td class="evt">30</td><td>Men 15-18 50 Breast</td><td class="time">31.53</td><td>2022</td><td>Liam Lynk</td><td>Mountain</td><td>Mountain Lakes</td></tr>
           <tr><td class="evt">31</td><td>Women 15-18 50 Breast</td><td class="time">35.85</td><td>1988</td><td>Sherri Evey</td><td>White Meadow</td><td>White Meadow</td></tr>
           <tr><td class="evt">32</td><td>Boys 18&amp;O 200 Free Relay</td><td class="time">1:46.00</td><td>1981</td><td>Indian</td><td>Indian</td><td>N/A</td></tr>
-          <tr><td class="evt">33</td><td>Girls 18&amp;O 200 Free Relay</td><td class="time">2:02.25</td><td>2023</td><td>L. Page, J. Corbo, L. Hann, E. Fraser</td><td>Mountain</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">33</td><td>Girls 18&amp;O 200 Free Relay</td><td class="time">2:02.25</td><td>2023</td><td>Lorelai Page, Julia Corbo, Lily Hann, Elise Fraser</td><td>Mountain</td><td>Indian Lake</td></tr>
           <tr><td class="evt">34</td><td>Men 13-18 100 Free</td><td class="time">56.77</td><td>1988</td><td>Sean Gowrie</td><td>White Meadow</td><td>White Meadow</td></tr>
           <tr><td class="evt">35</td><td>Women 13-18 100 Free</td><td class="time">1:03.78</td><td>2021</td><td>Lorelai Page</td><td>Mountain</td><td>White Meadow</td></tr>
           <tr><td class="evt">36M</td><td>Boys 12&amp;U 100 IM (M)</td><td class="time">1:10.89</td><td>2017</td><td>Zach Ferdico</td><td>Mountain</td><td>White Meadow</td></tr>
@@ -614,12 +719,60 @@
           <tr><td class="evt">40Y</td><td>Boys 7-8 25 Back (Y)</td><td class="time">18.30</td><td>1982</td><td>Geoff Standfast</td><td>Arrowhead</td><td>Indian Lake</td></tr>
           <tr><td class="evt">41M</td><td>Girls 7-8 25 Back (M)</td><td class="time">20.73</td><td>1984</td><td>Cathy Marucci</td><td>Indian</td><td>White Meadow</td></tr>
           <tr><td class="evt">41Y</td><td>Girls 7-8 25 Back (Y)</td><td class="time">18.28</td><td>2016</td><td>Lauren Markowitz</td><td>Mountain</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">42</td><td>Boys 9-10 50 Back</td><td class="time">36.09</td><td>2001</td><td>Charlie Wang</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">43</td><td>Girls 9-10 50 Back</td><td class="time">36.46</td><td>2015</td><td>Elizabeth Tsang</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">44</td><td>Boys 11-12 50 Back</td><td class="time">31.59</td><td>2003</td><td>Charlie Wang</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">45</td><td>Girls 11-12 50 Back</td><td class="time">34.60</td><td>1980</td><td>J. Hendricks</td><td>White Meadow</td><td>Mountain</td></tr>
+          <tr><td class="evt">46</td><td>Boys 13-14 50 Back</td><td class="time">29.04</td><td>2022</td><td>Connor Johnson</td><td>Pirate</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">47</td><td>Girls 13-14 50 Back</td><td class="time">33.60</td><td>1980</td><td>Sally Rear</td><td>Indian</td><td>Mountain</td></tr>
+          <tr><td class="evt">48</td><td>Men 15-18 50 Back</td><td class="time">28.54</td><td>2022</td><td>Liam Lynk</td><td>Mountain</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">49</td><td>Women 15-18 50 Back</td><td class="time">32.75</td><td>1990</td><td>Janet Worobel</td><td>Rock Ridge</td><td>Mountain</td></tr>
+          <tr><td class="evt">50M</td><td>Boys 8&amp;U 25 Fly (M)</td><td class="time">20.12</td><td>1987</td><td>Brian Elko</td><td>Indian</td><td>Lake Parsippany</td></tr>
+          <tr><td class="evt">50Y</td><td>Boys 8&amp;U 25 Fly (Y)</td><td class="time">17.30</td><td>1982</td><td>Larry Page</td><td>Mountain</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">51M</td><td>Girls 8&amp;U 25 Fly (M)</td><td class="time">18.25</td><td>1984</td><td>Sarah Nason</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">51Y</td><td>Girls 8&amp;U 25 Fly (Y)</td><td class="time">17.15</td><td>1996</td><td>T. Vogel</td><td>Cedar</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">52M</td><td>Boys 9-10 25 Fly (M)</td><td class="time">16.48</td><td>2017</td><td>Connor McLachlan</td><td>Rock Ridge</td><td>White Meadow</td></tr>
+          <tr><td class="evt">52Y</td><td>Boys 9-10 25 Fly (Y)</td><td class="time">14.07</td><td>2001</td><td>Charlie Wang</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">53M</td><td>Girls 9-10 25 Fly (M)</td><td class="time">17.00</td><td>1979</td><td>A. Leonard</td><td>Cedar</td><td>N/A</td></tr>
+          <tr><td class="evt">53Y</td><td>Girls 9-10 25 Fly (Y)</td><td class="time">14.37</td><td>2015</td><td>Elizabeth Tsang</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">54</td><td>Boys 11-12 50 Fly</td><td class="time">30.12</td><td>2003</td><td>Charlie Wang</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">55</td><td>Girls 11-12 50 Fly</td><td class="time">31.48</td><td>2017</td><td>Lily Hann</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">56</td><td>Boys 13-14 50 Fly</td><td class="time">28.19</td><td>2016</td><td>Mike Scornavacca</td><td>Pirate</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">57</td><td>Girls 13-14 50 Fly</td><td class="time">30.90</td><td>2018</td><td>Lily Hann</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">58</td><td>Men 15-18 50 Fly</td><td class="time">26.85</td><td>2016</td><td>Matt Luciano</td><td>Mountain</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">59</td><td>Women 15-18 50 Fly</td><td class="time">29.17</td><td>2022</td><td>Lily Hann</td><td>Mountain</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">**60M</td><td>Mixed 6&amp;U 100 Free Relay (M)</td><td class="time">2:14.79</td><td>2024</td><td>White Meadow (T. Causino, M. Biville, I. Romanov, R. Paliukaitis)</td><td>White Meadow</td><td>White Meadow</td></tr>
+          <tr><td class="evt">**60Y</td><td>Mixed 6&amp;U 100 Free Relay (Y)</td><td class="time">2:03.77</td><td>2025</td><td>Cedar (C. Healy, E. Einstein, H. Klug, N. Burmil)</td><td>Cedar</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">61M</td><td>Mixed 8&amp;U 100 Free Relay (M)</td><td class="time">1:20.69</td><td>1984</td><td>Mountain</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">61Y</td><td>Mixed 8&amp;U 100 Free Relay (Y)</td><td class="time">1:11.21</td><td>2014</td><td>Mountain (L. Markowitz, A. Tamarelli, M. Marino, O. Markowitz)</td><td>Mountain</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">62</td><td>Boys 9-10 200 Free Relay</td><td class="time">2:32.90</td><td>1976</td><td>Parsippany</td><td>Parsippany</td><td>N/A</td></tr>
+          <tr><td class="evt">63</td><td>Girls 9-10 200 Free Relay</td><td class="time">2:23.34</td><td>2015</td><td>Mountain (L. Page, M. Marino, L. Hann, E. Tsang)</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">64</td><td>Boys 11-12 200 Free Relay</td><td class="time">2:06.37</td><td>2018</td><td>Mountain (R. Lalani, S. Tucker, G. Hann, O. Markowitz)</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">65</td><td>Girls 11-12 200 Free Relay</td><td class="time">2:06.57</td><td>2017</td><td>Mountain (E. Tsang, L. Page, M. Marino, L. Hann)</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">66</td><td>Boys 13-14 200 Free Relay</td><td class="time">1:57.31</td><td>2018</td><td>Mountain (A. Lalani, L. Hayward, P. Smith, L. Lynk)</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">67</td><td>Girls 13-14 200 Free Relay</td><td class="time">2:04.60</td><td>1994 / 2018*</td><td>Mountain / Mountain (E. Tsang, L. Hann, V. Marshall, L. Page)</td><td>Mountain / Mountain</td><td>Mountain / Mountain</td></tr>
+          <tr><td class="evt">68</td><td>Men 15-18 200 Free Relay</td><td class="time">1:46.57</td><td>2022</td><td>Mountain (G. Hann, S. Tucker, L. Lynk, O. Markowitz)</td><td>Mountain</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">69</td><td>Women 15-18 200 Free Relay</td><td class="time">2:03.54</td><td>1995</td><td>Mountain</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">70M</td><td>Boys 35&amp;O 100 Free Relay (M)</td><td class="time">53.79</td><td>1995</td><td>Mountain</td><td>Mountain</td><td>White Meadow</td></tr>
+          <tr><td class="evt">70Y</td><td>Boys 35&amp;O 100 Free Relay (Y)</td><td class="time">46.10</td><td>2015</td><td>Mountain (C. Graf, M. Tucker, L. Page, J. Seijas)</td><td>Mountain</td><td>Mountain</td></tr>
+          <tr><td class="evt">71M</td><td>Girls 35&amp;O 100 Free Relay (M)</td><td class="time">1:00.25</td><td>1989</td><td>Mountain</td><td>Mountain</td><td>Indian Lake</td></tr>
+          <tr><td class="evt">71Y</td><td>Girls 35&amp;O 100 Free Relay (Y)</td><td class="time">57.69</td><td>2022</td><td>Cedar (Karen Dominger, Heather Einstein, Kristie Sabel, Cori Eggert)</td><td>Cedar</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">**72M</td><td>Mixed 50&amp;O 100 Free Relay (M)</td><td class="time">1:08.25</td><td>2024</td><td>Cedar Lake</td><td>Cedar Lake</td><td>White Meadow</td></tr>
+          <tr><td class="evt">**72Y</td><td>Mixed 50&amp;O 100 Free Relay (Y)</td><td class="time">1:02.21</td><td>2025</td><td>White Meadow (J. Biddleman, M. Cromwell, D. Maute, J. Maute)</td><td>White Meadow</td><td>Mountain Lakes</td></tr>
+          <tr><td class="evt">73</td><td>Boys 12&amp;O 400 Free</td><td class="time">4:19.91</td><td>1988</td><td>Sean Gowrie</td><td>White Meadow</td><td>White Meadow</td></tr>
+          <tr><td class="evt">74</td><td>Girls 12&amp;O 400 Free</td><td class="time">4:45.90</td><td>1982</td><td>Sally Rear</td><td>Indian</td><td>Indian Lake</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="foot-note">*Events marked with an asterisk (12R, 13R) are retired events kept for historical reference. Event 10Y reflects a tie between two swimmers.</p>
+    <p class="foot-note">*Events marked with a single asterisk (12R, 13R) are retired events, retired in 2018, kept for historical reference. Events marked with a double asterisk (60M/Y, 72M/Y) were added in 2024. Events 10Y and 67 reflect ties between multiple swimmers or teams. Pool lengths by lake: Cedar 25M &middot; Indian 25Y &amp; 50M &middot; Mountain 25Y &amp; 50M &middot; Pirate (Par Lake) 25M &amp; 50M &middot; Rock Ridge 25Y &middot; Valhalla 25M &amp; 50M &middot; White Meadow 25M &amp; 50M. Edition 7/2025.</p>
   </div>
 </section>
+
+<div class="wave" style="background:#EEF1EA;">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path" d="M0,30 C150,0 350,60 600,30 C850,0 1050,60 1200,30 L1200,60 L0,60 Z" fill="#FFFFFF"/>
+  </svg>
+</div>
 
 <!-- AWARDS -->
 <section id="awards">
@@ -661,7 +814,7 @@
   </div>
 </section>
 
-<div class="wave">
+<div class="wave" style="background:#FFFFFF;">
   <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path class="wave-path" d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,60 L0,60 Z" fill="#0E1F14"/>
   </svg>
@@ -689,12 +842,13 @@
       <div class="add-senior">+ Add another senior</div>
     </div>
   </div>
-  <div class="wave">
-    <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#FFFFFF"/>
-    </svg>
-  </div>
 </section>
+
+<div class="wave" style="background:#0E1F14;">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#FFFFFF"/>
+  </svg>
+</div>
 
 <!-- THANK YOU -->
 <section id="thank-you">
@@ -746,6 +900,12 @@
   </div>
 </section>
 
+<div class="wave" style="background:#FFFFFF;">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#EEF1EA"/>
+  </svg>
+</div>
+
 <!-- RESULTS -->
 <section class="section-tint" id="results">
   <div class="wrap">
@@ -778,6 +938,12 @@
     </div>
   </div>
 </section>
+
+<div class="wave" style="background:#EEF1EA;">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path" d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,60 L0,60 Z" fill="#101410"/>
+  </svg>
+</div>
 
 <footer>
   <div class="fbrand">Hub Lakes Swim Championships</div>
