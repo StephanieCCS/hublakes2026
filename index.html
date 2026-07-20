@@ -312,10 +312,7 @@
   .senior-card .bio{font-size:0.78rem; color:#cdd8c5;}
   .senior-photo-carousel .senior-photo{position:relative; overflow:hidden; cursor:pointer;}
   .senior-photo-carousel .senior-photo:focus-visible{outline:2px solid var(--aqua); outline-offset:2px;}
-  .senior-photo-carousel .photo-slide{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:none;
-  }
-  .senior-photo-carousel .photo-slide.is-active{display:block;}
+  .senior-photo-carousel .photo-img{width:100%; height:100%; object-fit:cover; display:block;}
   .photo-dots{display:flex; justify-content:center; gap:7px; margin:-4px 0 8px;}
   .photo-dot{
     width:9px; height:9px; padding:0; border-radius:50%; border:1px solid rgba(255,255,255,0.4);
@@ -842,12 +839,11 @@
       <div class="senior-card">
         <div class="senior-photo-carousel">
           <div class="senior-photo" tabindex="0" role="button" aria-label="Amelia Alblas &ndash; tap photo to see her throwback picture">
-            <img class="photo-slide is-active" src="Seniors/Alblas.jpeg" alt="Amelia Alblas">
-            <img class="photo-slide" src="Seniors/Alblas2.JPG" alt="Amelia Alblas as a young swimmer">
+            <img class="photo-img" src="Seniors/Alblas.jpeg" alt="Amelia Alblas">
           </div>
           <div class="photo-dots" role="tablist" aria-label="Photos of Amelia Alblas">
-            <button class="photo-dot is-active" type="button" aria-label="Current photo" aria-selected="true"></button>
-            <button class="photo-dot" type="button" aria-label="Throwback photo" aria-selected="false"></button>
+            <button class="photo-dot is-active" type="button" data-src="Seniors/Alblas.jpeg" data-alt="Amelia Alblas" aria-label="Current photo" aria-selected="true"></button>
+            <button class="photo-dot" type="button" data-src="Seniors/Alblas2.JPG" data-alt="Amelia Alblas as a young swimmer" aria-label="Throwback photo" aria-selected="false"></button>
           </div>
         </div>
         <div class="name">Amelia Alblas</div>
@@ -1058,15 +1054,19 @@
 
   // ---- Senior photo carousel (dots + tap-the-photo) ----
   document.querySelectorAll('.senior-photo-carousel').forEach(carousel => {
-    const slides = carousel.querySelectorAll('.photo-slide');
+    const img = carousel.querySelector('.photo-img');
     const dots = carousel.querySelectorAll('.photo-dot');
     const photo = carousel.querySelector('.senior-photo');
-    let current = [...slides].findIndex(s => s.classList.contains('is-active'));
+    let current = [...dots].findIndex(d => d.classList.contains('is-active'));
     if(current < 0) current = 0;
 
     function goTo(i){
       current = i;
-      slides.forEach((s, si) => s.classList.toggle('is-active', si === i));
+      const dot = dots[i];
+      if(img && dot){
+        img.src = dot.dataset.src;
+        img.alt = dot.dataset.alt;
+      }
       dots.forEach((d, di) => {
         d.classList.toggle('is-active', di === i);
         d.setAttribute('aria-selected', di === i ? 'true' : 'false');
@@ -1076,11 +1076,11 @@
     dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
     if(photo){
-      photo.addEventListener('click', () => goTo((current + 1) % slides.length));
+      photo.addEventListener('click', () => goTo((current + 1) % dots.length));
       photo.addEventListener('keydown', (e) => {
         if(e.key === 'Enter' || e.key === ' '){
           e.preventDefault();
-          goTo((current + 1) % slides.length);
+          goTo((current + 1) % dots.length);
         }
       });
     }
