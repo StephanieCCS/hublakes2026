@@ -105,14 +105,16 @@
       radial-gradient(circle at 32% 26%, rgba(255,255,255,0.65), rgba(255,255,255,0.08) 35%, transparent 68%),
       radial-gradient(circle at 60% 65%, rgba(255,255,255,0.06), transparent 70%);
     border:1px solid rgba(255,255,255,0.16);
-    animation:bubbleFloat 12s ease-in-out infinite;
+    animation-name:bubbleRise; animation-timing-function:ease-in; animation-iteration-count:infinite;
   }
-  @keyframes bubbleFloat{
-    0%,100%{transform:translateY(0) scale(1);}
-    50%{transform:translateY(-16px) scale(1.03);}
+  @keyframes bubbleRise{
+    0%{transform:translateY(0); opacity:0;}
+    10%{opacity:0.85;}
+    78%{opacity:0.5;}
+    100%{transform:translateY(-680px); opacity:0;}
   }
   @media (prefers-reduced-motion: reduce){
-    .bubble{animation:none;}
+    .bubble{animation:none; opacity:0.4;}
   }
   /* hero wave breaks out of the section's horizontal padding so it reaches the true edges,
      while staying inside .hero so the gradient/bubbles show through behind it */
@@ -308,6 +310,14 @@
   .senior-card .name{font-weight:700; color:var(--white); font-size:0.95rem; margin-bottom:4px; font-family:'Anton',sans-serif; text-transform:uppercase;}
   .senior-card .team{font-family:'Space Mono',monospace; font-size:0.68rem; color:var(--aqua); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;}
   .senior-card .bio{font-size:0.78rem; color:#cdd8c5;}
+  .senior-photo-swap{position:relative; overflow:hidden; cursor:pointer;}
+  .senior-photo-swap img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:50%;
+    transition:opacity .35s ease;
+  }
+  .senior-photo-swap .photo-alt{opacity:0;}
+  .senior-photo-swap:hover .photo-main, .senior-photo-swap:focus-visible .photo-main, .senior-photo-swap.flipped .photo-main{opacity:0;}
+  .senior-photo-swap:hover .photo-alt, .senior-photo-swap:focus-visible .photo-alt, .senior-photo-swap.flipped .photo-alt{opacity:1;}
   .add-senior{
     border:2px dashed rgba(255,255,255,0.35); border-radius:6px; display:flex; align-items:center; justify-content:center;
     color:rgba(255,255,255,0.55); font-size:0.85rem; text-align:center; padding:16px; min-height:100%;
@@ -363,21 +373,27 @@
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="bubbles">
-    <span class="bubble" style="width:70px;height:70px;top:8%;left:6%;animation-duration:13s;animation-delay:0s;"></span>
-    <span class="bubble" style="width:34px;height:34px;top:22%;left:18%;animation-duration:9s;animation-delay:1.2s;"></span>
-    <span class="bubble" style="width:50px;height:50px;top:60%;left:12%;animation-duration:11s;animation-delay:2.4s;"></span>
-    <span class="bubble" style="width:90px;height:90px;top:65%;left:34%;animation-duration:15s;animation-delay:0.6s;"></span>
-    <span class="bubble" style="width:28px;height:28px;top:14%;left:46%;animation-duration:8s;animation-delay:3s;"></span>
-    <span class="bubble" style="width:60px;height:60px;top:78%;left:58%;animation-duration:12s;animation-delay:1.8s;"></span>
-    <span class="bubble" style="width:40px;height:40px;top:10%;left:70%;animation-duration:10s;animation-delay:2.2s;"></span>
-    <span class="bubble" style="width:76px;height:76px;top:48%;left:88%;animation-duration:14s;animation-delay:0.9s;"></span>
-    <span class="bubble" style="width:24px;height:24px;top:82%;left:80%;animation-duration:9.5s;animation-delay:3.6s;"></span>
-    <span class="bubble" style="width:46px;height:46px;top:32%;left:2%;animation-duration:10.5s;animation-delay:4.2s;"></span>
-    <span class="bubble" style="width:20px;height:20px;top:44%;left:26%;animation-duration:7.5s;animation-delay:2.8s;"></span>
-    <span class="bubble" style="width:58px;height:58px;top:5%;left:60%;animation-duration:13.5s;animation-delay:1.5s;"></span>
-    <span class="bubble" style="width:32px;height:32px;top:36%;left:94%;animation-duration:9s;animation-delay:4.8s;"></span>
-    <span class="bubble" style="width:64px;height:64px;top:90%;left:44%;animation-duration:12.5s;animation-delay:0.3s;"></span>
-    <span class="bubble" style="width:22px;height:22px;top:60%;left:76%;animation-duration:8.5s;animation-delay:5.2s;"></span>
+    <span class="bubble" style="width:70px;height:70px;top:8%;left:6%;animation-duration:7s;animation-delay:0s;"></span>
+    <span class="bubble" style="width:34px;height:34px;top:22%;left:18%;animation-duration:5s;animation-delay:1.2s;"></span>
+    <span class="bubble" style="width:50px;height:50px;top:60%;left:12%;animation-duration:6s;animation-delay:2.4s;"></span>
+    <span class="bubble" style="width:90px;height:90px;top:65%;left:34%;animation-duration:8s;animation-delay:0.6s;"></span>
+    <span class="bubble" style="width:28px;height:28px;top:14%;left:46%;animation-duration:4.5s;animation-delay:3s;"></span>
+    <span class="bubble" style="width:60px;height:60px;top:78%;left:58%;animation-duration:6.5s;animation-delay:1.8s;"></span>
+    <span class="bubble" style="width:40px;height:40px;top:10%;left:70%;animation-duration:5.5s;animation-delay:2.2s;"></span>
+    <span class="bubble" style="width:76px;height:76px;top:48%;left:88%;animation-duration:7.5s;animation-delay:0.9s;"></span>
+    <span class="bubble" style="width:24px;height:24px;top:82%;left:80%;animation-duration:5s;animation-delay:3.6s;"></span>
+    <span class="bubble" style="width:46px;height:46px;top:32%;left:2%;animation-duration:5.5s;animation-delay:4.2s;"></span>
+    <span class="bubble" style="width:20px;height:20px;top:44%;left:26%;animation-duration:4s;animation-delay:2.8s;"></span>
+    <span class="bubble" style="width:58px;height:58px;top:5%;left:60%;animation-duration:7s;animation-delay:1.5s;"></span>
+    <span class="bubble" style="width:32px;height:32px;top:36%;left:94%;animation-duration:5s;animation-delay:4.8s;"></span>
+    <span class="bubble" style="width:64px;height:64px;top:90%;left:44%;animation-duration:6.5s;animation-delay:0.3s;"></span>
+    <span class="bubble" style="width:22px;height:22px;top:60%;left:76%;animation-duration:4.5s;animation-delay:5.2s;"></span>
+    <span class="bubble" style="width:36px;height:36px;top:2%;left:28%;animation-duration:5s;animation-delay:0.5s;"></span>
+    <span class="bubble" style="width:44px;height:44px;top:12%;left:52%;animation-duration:6s;animation-delay:2s;"></span>
+    <span class="bubble" style="width:26px;height:26px;top:4%;left:82%;animation-duration:4.5s;animation-delay:3.2s;"></span>
+    <span class="bubble" style="width:54px;height:54px;top:16%;left:14%;animation-duration:6.5s;animation-delay:1s;"></span>
+    <span class="bubble" style="width:30px;height:30px;top:6%;left:40%;animation-duration:5.2s;animation-delay:4s;"></span>
+    <span class="bubble" style="width:42px;height:42px;top:18%;left:94%;animation-duration:6.2s;animation-delay:2.6s;"></span>
   </div>
   <div class="wrap">
     <div>
@@ -437,29 +453,20 @@
     <div class="section-head">
       <span class="banner-label">Fuel up</span>
       <h2>Concessions</h2>
-      <p>Grab a bite between events.</p>
+      <p>Grab a bite between events. The same menu will be available both Saturday and Sunday.</p>
     </div>
-    <div class="thanks-grid">
-      <div class="card thanks-card">
-        <h3>Saturday, August 1</h3>
-        <ul>
-          <li>[Item] &ndash; <em>[Price]</em></li>
-          <li>[Item] &ndash; <em>[Price]</em></li>
-          <li>[Item] &ndash; <em>[Price]</em></li>
-          <li>[Item] &ndash; <em>[Price]</em></li>
-          <li>[Item] &ndash; <em>[Price]</em></li>
-        </ul>
-      </div>
-      <div class="card alt thanks-card">
-        <h3>Sunday, August 2</h3>
-        <ul>
-          <li>[Item] &ndash; <em>[Price]</em></li>
-          <li>[Item] &ndash; <em>[Price]</em></li>
-          <li>[Item] &ndash; <em>[Price]</em></li>
-          <li>[Item] &ndash; <em>[Price]</em></li>
-          <li>[Item] &ndash; <em>[Price]</em></li>
-        </ul>
-      </div>
+    <div class="events-note">
+      <strong>Coming soon:</strong> the full concessions menu and pricing will be posted here closer to the meet.
+    </div>
+    <div class="card thanks-card" style="max-width:480px; margin:0 auto;">
+      <h3>Menu</h3>
+      <ul>
+        <li>[Item] &ndash; <em>[Price]</em></li>
+        <li>[Item] &ndash; <em>[Price]</em></li>
+        <li>[Item] &ndash; <em>[Price]</em></li>
+        <li>[Item] &ndash; <em>[Price]</em></li>
+        <li>[Item] &ndash; <em>[Price]</em></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -790,7 +797,7 @@
     <div class="awards-grid">
       <div class="card award-card">
         <h3>David Gibson Memorial Award</h3>
-        <p>Given to the championship's outstanding male swimmer. David swam for Lake Hiawatha in the Hub Lakes league from age six and became an outstanding swimmer at the local and national level. He won the O'Connell award in 2005 and was lost in an auto accident later that year. The award has since been re-dedicated in his memory, representing the spirit, enthusiasm, and commitment of a Hub Lakes swimmer.</p>
+        <p>Given to the championship's outstanding male swimmer. David Gibson swam for Lake Hiawatha in the Hub Lakes league since the age of six and went on to become an outstanding swimmer at both the local and national level. He was an O'Connell award winner in 2005. Sadly, David was lost in an auto accident later that year, and the award has since been re-dedicated in his memory. David truly represented the spirit, enthusiasm, and commitment of a Hub Lakes swimmer.</p>
       </div>
       <div class="card alt award-card">
         <h3>The O'Connell Award</h3>
@@ -798,15 +805,15 @@
       </div>
       <div class="card alt award-card">
         <h3>Claire Murray Award</h3>
-        <p>Voted on and presented to the outstanding female summer swimmer. Claire Murray was a lifelong member of Rock Ridge Lake until her unexpected passing in 2020. She is remembered as a key member of the 35-and-over women's relay team, known for a legendary start.</p>
+        <p>Voted on and presented to the outstanding female summer swimmer at the Hub Lakes swimming championships. Claire Murray was a lifelong member of Rock Ridge Lake until her unexpected passing during the summer of 2020. Claire Murray's love and commitment to Rock Ridge, and especially the swim team, was limitless. She is famously remembered as a key member of the 35-and-over women's relay team, known for a legendary start that made a huge splash in all of our hearts.</p>
       </div>
       <div class="card award-card">
         <h3>The La Mothe Award</h3>
-        <p>Dave La Mothe was the founding father of the Lake Parsippany swim team and an outstanding parent volunteer who devoted his time to Lake Parsippany and all of Hub Lakes swimming. Presented to a parent who unselfishly devotes time, talent, and enthusiasm to the sport.</p>
+        <p>Dave La Mothe was the founding father of the Lake Parsippany swim team and an outstanding parent volunteer who dedicated his time not only to Lake Parsippany, but all of Hub Lakes swimming. This award is presented to a parent who unselfishly devotes time, talents, and enthusiasm to the sport of swimming.</p>
       </div>
       <div class="card award-card">
         <h3>Bob Williams Award</h3>
-        <p>Voted on and presented to the outstanding male and female summer swimmer. Bob Williams was the driving force in Rock Ridge swimming for many years and a promoter of the "summer" swimmer in a league populated with year-round swimmers.</p>
+        <p>Voted on and presented to the outstanding male and female summer swimmer at the Hub Lakes swimming championships. Bob Williams was the driving force in Rock Ridge swimming for many years and always a promoter of the "summer" swimmer in a league populated with year-round swimmers. It is with great pride that Hub Lakes recognizes Bob Williams' extraordinary talents and efforts.</p>
       </div>
     </div>
     <div class="award-link">
@@ -831,20 +838,27 @@
     <div class="section-head">
       <span class="banner-label">Senior tribute</span>
       <h2>Class of 2026</h2>
-      <p>Placeholder cards below &mdash; swap in each senior's photo, name, team, and bio.</p>
+      <p>Congratulations to all of this year's graduating senior swimmers &mdash; thank you for everything you've given to Hub Lakes swimming, and best of luck in your next chapter.</p>
     </div>
     <div class="seniors-grid">
-      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
-      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
-      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
-      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
-      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
-      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
-      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
-      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
-      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
-      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div><div class="bio">[Short bio &mdash; years swimming, favorite event, future plans.]</div></div>
-      <div class="add-senior">+ Add another senior</div>
+      <div class="senior-card">
+        <div class="senior-photo senior-photo-swap" tabindex="0" role="button" aria-label="Amelia Alblas &ndash; tap or hover to see a photo from her younger swimming days">
+          <img class="photo-main" src="Seniors/Alblas.jpeg" alt="Amelia Alblas">
+          <img class="photo-alt" src="Seniors/Alblas2.jpg" alt="Amelia Alblas as a young swimmer">
+        </div>
+        <div class="name">Amelia Alblas</div>
+        <div class="team">Indian Lake</div>
+        <div class="bio">This fall, Amelia will study Electrical Engineering at Olin College of Engineering.</div>
+      </div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
+      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
     </div>
   </div>
 </section>
@@ -861,35 +875,40 @@
     <div class="section-head">
       <span class="banner-label">Gratitude</span>
       <h2>Thank you</h2>
-      <p>This meet doesn't happen without the people below. Replace the placeholders with this year's names.</p>
+      <p>This meet doesn't happen without the people below.</p>
     </div>
     <div class="thanks-grid">
       <div class="card thanks-card">
         <h3>Coaches</h3>
         <ul>
-          <li>[Coach Name] &ndash; <em>[Lake Team]</em></li>
-          <li>[Coach Name] &ndash; <em>[Lake Team]</em></li>
-          <li>[Coach Name] &ndash; <em>[Lake Team]</em></li>
-          <li>[Coach Name] &ndash; <em>[Lake Team]</em></li>
-          <li>[Coach Name] &ndash; <em>[Lake Team]</em></li>
-          <li>[Coach Name] &ndash; <em>[Lake Team]</em></li>
+          <li>Tyler Delp &ndash; <em>Cedar Lake</em></li>
+          <li>Meredith Hollister &ndash; <em>Indian Lake</em></li>
+          <li>Heather McCauley &ndash; <em>Indian Lake</em></li>
+          <li>Lauren Markowitz &ndash; <em>Mountain Lakes</em></li>
+          <li>Melissa Nestor Gavarny &ndash; <em>Pirate</em></li>
+          <li>Lauren Koppelman &ndash; <em>Rock Ridge Lake</em></li>
+          <li>Sarah Vojta &ndash; <em>White Meadow Lake</em></li>
         </ul>
       </div>
       <div class="card alt thanks-card">
         <h3>Parent Delegates</h3>
         <ul>
-          <li>[Parent Delegate Name] &ndash; <em>[Lake Team]</em></li>
-          <li>[Parent Delegate Name] &ndash; <em>[Lake Team]</em></li>
-          <li>[Parent Delegate Name] &ndash; <em>[Lake Team]</em></li>
-          <li>[Parent Delegate Name] &ndash; <em>[Lake Team]</em></li>
-          <li>[Parent Delegate Name] &ndash; <em>[Lake Team]</em></li>
-          <li>[Parent Delegate Name] &ndash; <em>[Lake Team]</em></li>
+          <li>Jenny Briggs &ndash; <em>Cedar Lake</em></li>
+          <li>Meredith Behrens &ndash; <em>Indian Lake</em></li>
+          <li>Laura Flynn &ndash; <em>Indian Lake</em></li>
+          <li>Carrie Dickey &ndash; <em>Mountain Lakes</em></li>
+          <li>Jenny Dunn &ndash; <em>Pirate</em></li>
+          <li>Meg Mautone &ndash; <em>Pirate</em></li>
+          <li>Tiffany Buffa &ndash; <em>Rock Ridge Lake</em></li>
+          <li>Megan Keown &ndash; <em>Rock Ridge Lake</em></li>
+          <li>Tara Freeman &ndash; <em>White Meadow Lake</em></li>
+          <li>Vicki Wieninger &ndash; <em>White Meadow Lake</em></li>
         </ul>
       </div>
       <div class="card thanks-card">
         <h3>Chairperson</h3>
         <ul>
-          <li>[Chairperson Name]</li>
+          <li>Thank you to our chairperson Michelle Cromwell for her countless hours of work throughout this entire season.</li>
         </ul>
       </div>
       <div class="card alt thanks-card">
@@ -920,7 +939,7 @@
       <p>Links will go live as each document is posted before, during, and after the meet.</p>
     </div>
     <div class="results-grid">
-      <a class="result-link" href="Placeholder PDF.pdf">
+      <a class="result-link" href="#">
         <span class="tag">Before Meet</span>
         <h4>Psych Sheet</h4>
         <div class="status">Posting soon</div>
@@ -1032,6 +1051,17 @@
   }, { threshold: 0, rootMargin: '-45% 0px -50% 0px' });
   sections.forEach(sec => navObserver.observe(sec));
   if(heroSection) navObserver.observe(heroSection);
+
+  // ---- Senior photo tap-to-swap (mobile/keyboard fallback for hover) ----
+  document.querySelectorAll('.senior-photo-swap').forEach(el => {
+    el.addEventListener('click', () => el.classList.toggle('flipped'));
+    el.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        el.classList.toggle('flipped');
+      }
+    });
+  });
 </script>
 
 </body>
