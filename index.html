@@ -316,8 +316,21 @@
     transition:opacity .35s ease;
   }
   .senior-photo-swap .photo-alt{opacity:0;}
-  .senior-photo-swap:hover .photo-main, .senior-photo-swap:focus-visible .photo-main, .senior-photo-swap.flipped .photo-main{opacity:0;}
-  .senior-photo-swap:hover .photo-alt, .senior-photo-swap:focus-visible .photo-alt, .senior-photo-swap.flipped .photo-alt{opacity:1;}
+  .senior-photo-swap .swap-badge{
+    position:absolute; bottom:2px; right:2px; z-index:2; width:26px; height:26px; border-radius:50%;
+    background:var(--green); color:var(--white); border:2px solid var(--deep);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono',monospace; font-size:0.85rem; line-height:1; pointer-events:none;
+  }
+  .swap-hint{font-family:'Space Mono',monospace; font-size:0.62rem; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;}
+  /* only apply hover swap on devices with a real mouse/trackpad -- on touch devices,
+     :hover can stick after a tap and block the JS-driven .flipped toggle from reverting */
+  @media (hover:hover) and (pointer:fine){
+    .senior-photo-swap:hover .photo-main{opacity:0;}
+    .senior-photo-swap:hover .photo-alt{opacity:1;}
+  }
+  .senior-photo-swap:focus-visible .photo-main, .senior-photo-swap.flipped .photo-main{opacity:0;}
+  .senior-photo-swap:focus-visible .photo-alt, .senior-photo-swap.flipped .photo-alt{opacity:1;}
   .add-senior{
     border:2px dashed rgba(255,255,255,0.35); border-radius:6px; display:flex; align-items:center; justify-content:center;
     color:rgba(255,255,255,0.55); font-size:0.85rem; text-align:center; padding:16px; min-height:100%;
@@ -453,19 +466,12 @@
     <div class="section-head">
       <span class="banner-label">Fuel up</span>
       <h2>Concessions</h2>
-      <p>Grab a bite between events. The same menu will be available both Saturday and Sunday.</p>
-    </div>
-    <div class="events-note">
-      <strong>Coming soon:</strong> the full concessions menu and pricing will be posted here closer to the meet.
+      <p>Grab a bite between events.</p>
     </div>
     <div class="card thanks-card" style="max-width:480px; margin:0 auto;">
       <h3>Menu</h3>
       <ul>
-        <li>[Item] &ndash; <em>[Price]</em></li>
-        <li>[Item] &ndash; <em>[Price]</em></li>
-        <li>[Item] &ndash; <em>[Price]</em></li>
-        <li>[Item] &ndash; <em>[Price]</em></li>
-        <li>[Item] &ndash; <em>[Price]</em></li>
+        <li>Coming soon</li>
       </ul>
     </div>
   </div>
@@ -845,10 +851,12 @@
         <div class="senior-photo senior-photo-swap" tabindex="0" role="button" aria-label="Amelia Alblas &ndash; tap or hover to see a photo from her younger swimming days">
           <img class="photo-main" src="Seniors/Alblas.jpeg" alt="Amelia Alblas">
           <img class="photo-alt" src="Seniors/Alblas2.JPG" alt="Amelia Alblas as a young swimmer">
+          <span class="swap-badge">&#8646;</span>
         </div>
+        <div class="swap-hint">Tap photo for a throwback</div>
         <div class="name">Amelia Alblas</div>
         <div class="team">Indian Lake</div>
-        <div class="bio">This fall, Amelia will study Electrical Engineering at Olin College of Engineering.</div>
+        <div class="bio">Amelia will study Electrical Engineering at Olin College of Engineering.</div>
       </div>
       <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
       <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
