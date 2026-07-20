@@ -310,27 +310,19 @@
   .senior-card .name{font-weight:700; color:var(--white); font-size:0.95rem; margin-bottom:4px; font-family:'Anton',sans-serif; text-transform:uppercase;}
   .senior-card .team{font-family:'Space Mono',monospace; font-size:0.68rem; color:var(--aqua); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;}
   .senior-card .bio{font-size:0.78rem; color:#cdd8c5;}
-  .senior-photo-swap{position:relative; overflow:hidden; cursor:pointer;}
-  .senior-photo-swap img{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:50%;
-    transition:opacity .35s ease;
+  .senior-photo-carousel .senior-photo{position:relative; overflow:hidden; cursor:pointer;}
+  .senior-photo-carousel .senior-photo:focus-visible{outline:2px solid var(--aqua); outline-offset:2px;}
+  .senior-photo-carousel .photo-slide{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:none;
   }
-  .senior-photo-swap .photo-alt{opacity:0;}
-  .senior-photo-swap .swap-badge{
-    position:absolute; bottom:2px; right:2px; z-index:2; width:26px; height:26px; border-radius:50%;
-    background:var(--green); color:var(--white); border:2px solid var(--deep);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Space Mono',monospace; font-size:0.85rem; line-height:1; pointer-events:none;
+  .senior-photo-carousel .photo-slide.is-active{display:block;}
+  .photo-dots{display:flex; justify-content:center; gap:7px; margin:-4px 0 8px;}
+  .photo-dot{
+    width:9px; height:9px; padding:0; border-radius:50%; border:1px solid rgba(255,255,255,0.4);
+    background:rgba(255,255,255,0.25); cursor:pointer;
   }
-  .swap-hint{font-family:'Space Mono',monospace; font-size:0.62rem; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;}
-  /* only apply hover swap on devices with a real mouse/trackpad -- on touch devices,
-     :hover can stick after a tap and block the JS-driven .flipped toggle from reverting */
-  @media (hover:hover) and (pointer:fine){
-    .senior-photo-swap:hover .photo-main{opacity:0;}
-    .senior-photo-swap:hover .photo-alt{opacity:1;}
-  }
-  .senior-photo-swap:focus-visible .photo-main, .senior-photo-swap.flipped .photo-main{opacity:0;}
-  .senior-photo-swap:focus-visible .photo-alt, .senior-photo-swap.flipped .photo-alt{opacity:1;}
+  .photo-dot.is-active{background:var(--aqua); border-color:var(--aqua);}
+  .photo-dot:focus-visible{outline:2px solid var(--aqua); outline-offset:2px;}
   .add-senior{
     border:2px dashed rgba(255,255,255,0.35); border-radius:6px; display:flex; align-items:center; justify-content:center;
     color:rgba(255,255,255,0.55); font-size:0.85rem; text-align:center; padding:16px; min-height:100%;
@@ -848,12 +840,16 @@
     </div>
     <div class="seniors-grid">
       <div class="senior-card">
-        <div class="senior-photo senior-photo-swap" tabindex="0" role="button" aria-label="Amelia Alblas &ndash; tap or hover to see a photo from her younger swimming days">
-          <img class="photo-main" src="Seniors/Alblas.jpeg" alt="Amelia Alblas">
-          <img class="photo-alt" src="Seniors/Alblas2.JPG" alt="Amelia Alblas as a young swimmer">
-          <span class="swap-badge">&#8646;</span>
+        <div class="senior-photo-carousel">
+          <div class="senior-photo" tabindex="0" role="button" aria-label="Amelia Alblas &ndash; tap photo to see her throwback picture">
+            <img class="photo-slide is-active" src="Seniors/Alblas.jpeg" alt="Amelia Alblas">
+            <img class="photo-slide" src="Seniors/Alblas2.JPG" alt="Amelia Alblas as a young swimmer">
+          </div>
+          <div class="photo-dots" role="tablist" aria-label="Photos of Amelia Alblas">
+            <button class="photo-dot is-active" type="button" aria-label="Current photo" aria-selected="true"></button>
+            <button class="photo-dot" type="button" aria-label="Throwback photo" aria-selected="false"></button>
+          </div>
         </div>
-        <div class="swap-hint">Tap photo for a throwback</div>
         <div class="name">Amelia Alblas</div>
         <div class="team">Indian Lake</div>
         <div class="bio">Amelia will study Electrical Engineering at Olin College of Engineering.</div>
@@ -1060,15 +1056,34 @@
   sections.forEach(sec => navObserver.observe(sec));
   if(heroSection) navObserver.observe(heroSection);
 
-  // ---- Senior photo tap-to-swap (mobile/keyboard fallback for hover) ----
-  document.querySelectorAll('.senior-photo-swap').forEach(el => {
-    el.addEventListener('click', () => el.classList.toggle('flipped'));
-    el.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter' || e.key === ' '){
-        e.preventDefault();
-        el.classList.toggle('flipped');
-      }
-    });
+  // ---- Senior photo carousel (dots + tap-the-photo) ----
+  document.querySelectorAll('.senior-photo-carousel').forEach(carousel => {
+    const slides = carousel.querySelectorAll('.photo-slide');
+    const dots = carousel.querySelectorAll('.photo-dot');
+    const photo = carousel.querySelector('.senior-photo');
+    let current = [...slides].findIndex(s => s.classList.contains('is-active'));
+    if(current < 0) current = 0;
+
+    function goTo(i){
+      current = i;
+      slides.forEach((s, si) => s.classList.toggle('is-active', si === i));
+      dots.forEach((d, di) => {
+        d.classList.toggle('is-active', di === i);
+        d.setAttribute('aria-selected', di === i ? 'true' : 'false');
+      });
+    }
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    if(photo){
+      photo.addEventListener('click', () => goTo((current + 1) % slides.length));
+      photo.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          goTo((current + 1) % slides.length);
+        }
+      });
+    }
   });
 </script>
 
