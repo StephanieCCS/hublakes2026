@@ -185,10 +185,10 @@
   nav.links a.active{background:var(--green); color:var(--white);}
 
   /* ===== ANIMATED WAVES ===== */
-  .wave svg .wave-path{animation:waveShift 9s ease-in-out infinite;}
+  .wave svg .wave-path{animation:waveShift 6s ease-in-out infinite;}
   @keyframes waveShift{
     0%,100%{transform:translateY(0);}
-    50%{transform:translateY(6px);}
+    50%{transform:translateY(16px);}
   }
   @media (prefers-reduced-motion: reduce){
     .wave svg .wave-path{animation:none;}
@@ -243,6 +243,16 @@
   .info-block{background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.25); border-radius:6px; padding:26px; margin-bottom:16px;}
   .info-block h3{font-size:1.05rem; margin-bottom:10px; color:var(--white); font-family:'Anton',sans-serif;}
   .info-block p{color:#d7e0cf; font-size:0.96rem;}
+  .info-block-map{display:flex; gap:20px; align-items:center;}
+  .info-block-map .map-embed{
+    flex:0 0 150px; width:150px; height:150px; border-radius:6px; overflow:hidden;
+    border:1px solid rgba(255,255,255,0.25); line-height:0;
+  }
+  .info-block-map .map-embed iframe{display:block; width:100%; height:100%; border:0;}
+  @media (max-width:560px){
+    .info-block-map{flex-direction:column; align-items:stretch; text-align:center;}
+    .info-block-map .map-embed{width:100%; height:180px;}
+  }
   .parking-alert{
     background:#16241A; border:1px solid var(--aqua); border-radius:6px; padding:22px; color:#E7ECDF;
   }
@@ -303,16 +313,16 @@
     background:rgba(255,255,255,0.06); border:2px dashed rgba(255,255,255,0.35); border-radius:6px; padding:16px; text-align:center;
   }
   .senior-photo{
-    width:100%; aspect-ratio:1/1; border-radius:50%; background:rgba(255,255,255,0.08);
+    width:100%; aspect-ratio:1/1; border-radius:50%; background:rgba(255,255,255,0.08); overflow:hidden;
     display:flex; align-items:center; justify-content:center; margin-bottom:12px;
     border:2px solid rgba(255,255,255,0.35); color:rgba(255,255,255,0.5); font-family:'Anton',sans-serif; font-size:2rem;
   }
   .senior-card .name{font-weight:700; color:var(--white); font-size:0.95rem; margin-bottom:4px; font-family:'Anton',sans-serif; text-transform:uppercase;}
   .senior-card .team{font-family:'Space Mono',monospace; font-size:0.68rem; color:var(--aqua); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;}
   .senior-card .bio{font-size:0.78rem; color:#cdd8c5;}
-  .senior-photo-carousel .senior-photo{position:relative; overflow:hidden; cursor:pointer;}
+  .senior-photo .photo-img{width:100%; height:100%; object-fit:cover; display:block;}
+  .senior-photo-carousel .senior-photo{position:relative; cursor:pointer;}
   .senior-photo-carousel .senior-photo:focus-visible{outline:2px solid var(--aqua); outline-offset:2px;}
-  .senior-photo-carousel .photo-img{width:100%; height:100%; object-fit:cover; display:block;}
   .photo-dots{display:flex; justify-content:center; gap:7px; margin:-4px 0 8px;}
   .photo-dot{
     width:9px; height:9px; padding:0; border-radius:50%; border:1px solid rgba(255,255,255,0.4);
@@ -359,15 +369,15 @@
     <button class="navToggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
     <nav class="links" id="navLinks">
       <a href="#merch">Merch</a>
-      <a href="#concessions">Concessions</a>
-      <a href="#schedule">Schedule</a>
       <a href="#directions">Directions</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#results">Results</a>
+      <a href="#concessions">Concessions</a>
       <a href="#events">Events</a>
       <a href="#records">Records</a>
       <a href="#awards">Awards</a>
       <a href="#class-of-2026">Class of 2026</a>
       <a href="#thank-you">Thank You</a>
-      <a href="#results">Results</a>
     </nav>
   </div>
 </header>
@@ -445,30 +455,40 @@
 
 <div class="wave" style="background:#FFFFFF;">
   <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#EEF1EA"/>
+    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#0E1F14"/>
   </svg>
 </div>
 
-<!-- CONCESSIONS -->
-<section class="section-tint" id="concessions">
+<!-- DIRECTIONS -->
+<section class="section-deep" id="directions">
   <div class="wrap">
-    <div class="section-head">
-      <span class="banner-label">Fuel up</span>
-      <h2>Concessions</h2>
-      <p>Grab a bite between events.</p>
+    <div class="section-head" style="margin-left:auto; margin-right:auto; text-align:center;">
+      <span class="banner-label">Getting there</span>
+      <h2>Directions &amp; parking</h2>
     </div>
-    <div class="card thanks-card" style="max-width:480px; margin:0 auto;">
-      <h3>Menu</h3>
-      <ul>
-        <li>Coming soon</li>
-      </ul>
+    <div class="directions-stack">
+      <div class="info-block info-block-map">
+        <div class="map-embed">
+          <iframe src="https://www.google.com/maps?q=91+East+Shore+Road+Denville+NJ+07834&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Indian Lake at 91 East Shore Road, Denville, NJ"></iframe>
+        </div>
+        <div>
+          <h3>Address</h3>
+          <p>91 East Shore Road<br>Denville, NJ 07834</p>
+          <div style="margin-top:14px;">
+            <a class="btn on-dark" href="https://www.google.com/maps/search/?api=1&query=91+East+Shore+Road+Denville+NJ+07834" target="_blank" rel="noopener">Get Directions &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <div class="parking-alert">
+        <strong>Parking:</strong> Please park on the street. The parking lot at Indian Lake is reserved for coaches and officials only.
+      </div>
     </div>
   </div>
 </section>
 
-<div class="wave" style="background:#EEF1EA;">
+<div class="wave" style="background:#0E1F14;">
   <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path class="wave-path" d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,60 L0,60 Z" fill="#FFFFFF"/>
+    <path class="wave-path" d="M0,30 C150,0 350,60 600,30 C850,0 1050,60 1200,30 L1200,60 L0,60 Z" fill="#FFFFFF"/>
   </svg>
 </div>
 
@@ -507,35 +527,69 @@
 
 <div class="wave" style="background:#FFFFFF;">
   <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#0E1F14"/>
+    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#EEF1EA"/>
   </svg>
 </div>
 
-<!-- DIRECTIONS -->
-<section class="section-deep" id="directions">
+<!-- RESULTS -->
+<section class="section-tint" id="results">
   <div class="wrap">
-    <div class="section-head" style="margin-left:auto; margin-right:auto; text-align:center;">
-      <span class="banner-label">Getting there</span>
-      <h2>Directions &amp; parking</h2>
+    <div class="section-head">
+      <span class="banner-label">Documents</span>
+      <h2>Sheets &amp; results</h2>
+      <p>Links will go live as each document is posted before, during, and after the meet.</p>
     </div>
-    <div class="directions-stack">
-      <div class="info-block">
-        <h3>Address</h3>
-        <p>91 East Shore Road<br>Denville, NJ 07834</p>
-        <div style="margin-top:14px;">
-          <a class="btn on-dark" href="https://www.google.com/maps/search/?api=1&query=91+East+Shore+Road+Denville+NJ+07834" target="_blank" rel="noopener">Get Directions &rarr;</a>
-        </div>
-      </div>
-      <div class="parking-alert">
-        <strong>Parking:</strong> Please park on the street. The parking lot at Indian Lake is reserved for coaches and officials only.
-      </div>
+    <div class="results-grid">
+      <a class="result-link" href="#">
+        <span class="tag">Before Meet</span>
+        <h4>Psych Sheet</h4>
+        <div class="status">Posting soon</div>
+      </a>
+      <a class="result-link" href="#">
+        <span class="tag">Day 2</span>
+        <h4>Heat Sheet</h4>
+        <div class="status">Posting soon</div>
+      </a>
+      <a class="result-link" href="#">
+        <span class="tag">Day 2</span>
+        <h4>Prelim Results</h4>
+        <div class="status">Posting soon</div>
+      </a>
+      <a class="result-link" href="#">
+        <span class="tag">Day 3</span>
+        <h4>Final Results</h4>
+        <div class="status">Posting soon</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:#EEF1EA;">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path" d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,60 L0,60 Z" fill="#0E1F14"/>
+  </svg>
+</div>
+
+<!-- CONCESSIONS -->
+<section class="section-deep" id="concessions">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="banner-label">Fuel up</span>
+      <h2>Concessions</h2>
+      <p>Grab a bite between events.</p>
+    </div>
+    <div class="card thanks-card" style="max-width:480px; margin:0 auto;">
+      <h3>Menu</h3>
+      <ul>
+        <li>Coming soon</li>
+      </ul>
     </div>
   </div>
 </section>
 
 <div class="wave" style="background:#0E1F14;">
   <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path class="wave-path" d="M0,30 C150,0 350,60 600,30 C850,0 1050,60 1200,30 L1200,60 L0,60 Z" fill="#FFFFFF"/>
+    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#FFFFFF"/>
   </svg>
 </div>
 
@@ -850,9 +904,43 @@
         <div class="team">Indian Lake</div>
         <div class="bio">Amelia will study Electrical Engineering at Olin College of Engineering.</div>
       </div>
-      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
-      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
-      <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
+      <div class="senior-card">
+        <div class="senior-photo-carousel">
+          <div class="senior-photo" tabindex="0" role="button" aria-label="Zoey Biddelman &ndash; tap photo to see her throwback picture">
+            <img class="photo-img" src="Seniors/Biddelman.jpeg" alt="Zoey Biddelman">
+          </div>
+          <div class="photo-dots" role="tablist" aria-label="Photos of Zoey Biddelman">
+            <button class="photo-dot is-active" type="button" data-src="Seniors/Biddelman.jpeg" data-alt="Zoey Biddelman" aria-label="Current photo" aria-selected="true"></button>
+            <button class="photo-dot" type="button" data-src="Seniors/Biddelman2.jpeg" data-alt="Zoey Biddelman as a young swimmer" aria-label="Throwback photo" aria-selected="false"></button>
+          </div>
+        </div>
+        <div class="name">Zoey Biddelman</div>
+        <div class="team">White Meadow Lake</div>
+        <div class="bio">Zoey will be attending Indiana University Kelley School of Business.</div>
+      </div>
+      <div class="senior-card">
+        <div class="senior-photo">
+          <img class="photo-img" src="Seniors/Hislop.jpeg" alt="Cathal Hislop">
+        </div>
+        <div class="photo-dots" style="visibility:hidden;" aria-hidden="true"><span class="photo-dot"></span></div>
+        <div class="name">Cathal Hislop</div>
+        <div class="team">Rock Ridge Lake</div>
+        <div class="bio">Cathal will study Finance at the University of Florida.</div>
+      </div>
+      <div class="senior-card">
+        <div class="senior-photo-carousel">
+          <div class="senior-photo" tabindex="0" role="button" aria-label="Nick Tecchio &ndash; tap photo to see his throwback picture">
+            <img class="photo-img" src="Seniors/Tecchio.JPG" alt="Nick Tecchio">
+          </div>
+          <div class="photo-dots" role="tablist" aria-label="Photos of Nick Tecchio">
+            <button class="photo-dot is-active" type="button" data-src="Seniors/Tecchio.JPG" data-alt="Nick Tecchio" aria-label="Current photo" aria-selected="true"></button>
+            <button class="photo-dot" type="button" data-src="Seniors/Tecchio2.JPG" data-alt="Nick Tecchio as a young swimmer" aria-label="Throwback photo" aria-selected="false"></button>
+          </div>
+        </div>
+        <div class="name">Nick Tecchio</div>
+        <div class="team">Indian Lake</div>
+        <div class="bio">Nick plans to study Finance and minor in Entrepreneurship at North Carolina State University. He is enlisted in the ROTC and National Guard and plans to swim.</div>
+      </div>
       <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
       <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
       <div class="senior-card"><div class="senior-photo">?</div><div class="name">[Swimmer Name]</div><div class="team">[Lake Team]</div></div>
@@ -925,45 +1013,6 @@
 </section>
 
 <div class="wave" style="background:#FFFFFF;">
-  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#EEF1EA"/>
-  </svg>
-</div>
-
-<!-- RESULTS -->
-<section class="section-tint" id="results">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="banner-label">Documents</span>
-      <h2>Sheets &amp; results</h2>
-      <p>Links will go live as each document is posted before, during, and after the meet.</p>
-    </div>
-    <div class="results-grid">
-      <a class="result-link" href="#">
-        <span class="tag">Before Meet</span>
-        <h4>Psych Sheet</h4>
-        <div class="status">Posting soon</div>
-      </a>
-      <a class="result-link" href="#">
-        <span class="tag">Day 2</span>
-        <h4>Heat Sheet</h4>
-        <div class="status">Posting soon</div>
-      </a>
-      <a class="result-link" href="#">
-        <span class="tag">Day 2</span>
-        <h4>Prelim Results</h4>
-        <div class="status">Posting soon</div>
-      </a>
-      <a class="result-link" href="#">
-        <span class="tag">Day 3</span>
-        <h4>Final Results</h4>
-        <div class="status">Posting soon</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<div class="wave" style="background:#EEF1EA;">
   <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path class="wave-path" d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,60 L0,60 Z" fill="#101410"/>
   </svg>
