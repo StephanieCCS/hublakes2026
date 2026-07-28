@@ -352,7 +352,7 @@
     text-decoration:none; display:block; transition:border-color .15s, transform .15s;
   }
   .result-link:hover{border-color:var(--green); transform:translateY(-2px);}
-  .result-link .tag{font-family:'Space Mono',monospace; font-size:0.66rem; color:var(--teal); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; display:block; font-weight:700;}
+  .result-link .tag, .thanks-card .tag{font-family:'Space Mono',monospace; font-size:0.66rem; color:var(--teal); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; display:block; font-weight:700;}
   .result-link h4{color:var(--ink); font-size:1.02rem; font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase;}
   .result-link .status{font-size:0.78rem; color:#8c9385; margin-top:6px; font-family:'Space Mono',monospace;}
 
@@ -580,12 +580,46 @@
       <h2>Concessions</h2>
       <p>Grab a bite between events.</p>
     </div>
-    <div class="card thanks-card" style="max-width:480px; margin:0 auto;">
-      <h3>Menu</h3>
-      <ul>
-        <li>Coming soon</li>
-      </ul>
+    <div class="thanks-grid">
+      <div class="card thanks-card">
+        <span class="tag">Saturday &amp; Sunday</span>
+        <h3>Breakfast</h3>
+        <ul>
+          <li>Bagels &ndash; <em>$3</em></li>
+          <li>w/ Butter or Cream Cheese &ndash; <em>+$1</em></li>
+          <li>Iced Coffee &ndash; <em>$5</em></li>
+        </ul>
+      </div>
+      <div class="card alt thanks-card">
+        <span class="tag">Saturday &amp; Sunday</span>
+        <h3>Snacks &amp; Drinks</h3>
+        <ul>
+          <li>Bottled Water &ndash; <em>$2</em></li>
+          <li>Soda / Seltzer &ndash; <em>$2</em></li>
+          <li>Mini-Gatorades &ndash; <em>$3</em></li>
+          <li>Assorted Chips and Candy &ndash; <em>$1&ndash;3</em></li>
+          <li>Watermelon &ndash; <em>$1</em></li>
+        </ul>
+      </div>
+      <div class="card thanks-card">
+        <span class="tag">Saturday</span>
+        <h3>Lunch</h3>
+        <ul>
+          <li>Hot Dogs* &ndash; <em>$3</em></li>
+          <li>Walking Tacos &ndash; <em>$5</em></li>
+        </ul>
+      </div>
+      <div class="card alt thanks-card">
+        <span class="tag">Sunday</span>
+        <h3>Lunch</h3>
+        <ul>
+          <li>Pasta* &ndash; <em>$3</em></li>
+          <li>3 Meatballs &ndash; <em>$3</em></li>
+          <li>Pasta* w/ Meatballs &ndash; <em>$5</em></li>
+        </ul>
+      </div>
     </div>
+    <p class="foot-note" style="text-align:center; color:#c5d4bd;">*Gluten-free hot dog buns and pasta available.</p>
   </div>
 </section>
 
