@@ -265,11 +265,13 @@
   }
   .events-note strong{color:var(--green-deep);}
   .table-scroll{overflow-x:auto; overflow-y:auto; max-height:520px; border:1px solid #dde3d6; border-radius:6px;}
-  table.plain{width:100%; border-collapse:collapse; min-width:680px; font-size:0.88rem; background:var(--white);}
+  #events .table-scroll{max-width:640px; margin:0 auto;}
+  table.plain{width:100%; border-collapse:collapse; table-layout:fixed; font-size:0.88rem; background:var(--white);}
   table.plain thead th{
     position:sticky; top:0; background:var(--deep); color:var(--white); text-align:left; padding:12px 14px;
     font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.5px; font-size:0.7rem; white-space:nowrap;
   }
+  table.plain th:first-child, table.plain td.evtnum{width:64px;}
   table.plain tbody td{padding:11px 14px; border-bottom:1px solid #e8ece2; vertical-align:top;}
   table.plain tbody tr:nth-child(even){background:#f5fbfb;}
   table.plain td.evtnum{font-family:'Space Mono',monospace; color:var(--green-deep); font-weight:700; white-space:nowrap;}
@@ -303,7 +305,7 @@
     margin-top:34px; padding:24px; background:var(--white); border:2px dashed var(--green);
     border-radius:6px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
   }
-  .award-link h3{font-family:'Anton',sans-serif; margin-bottom:6px; font-size:1.05rem;}
+  .award-link h3{font-family:'Anton',sans-serif; margin-bottom:6px; font-size:1.05rem; color:var(--ink);}
 
   /* ===== CLASS OF 2026 ===== */
   .seniors-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:20px;}
@@ -368,11 +370,11 @@
     <a href="#home" class="brand">Hub Lakes <span class="swash">2026</span></a>
     <button class="navToggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
     <nav class="links" id="navLinks">
-      <a href="#merch">Merch</a>
-      <a href="#directions">Directions</a>
       <a href="#schedule">Schedule</a>
+      <a href="#directions">Directions</a>
       <a href="#results">Results</a>
       <a href="#concessions">Concessions</a>
+      <a href="#merch">Merch</a>
       <a href="#events">Events</a>
       <a href="#records">Records</a>
       <a href="#awards">Awards</a>
@@ -434,69 +436,6 @@
   </div>
 </section>
 
-<!-- MERCH -->
-<section id="merch">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="banner-label">Gear up</span>
-      <h2>Meet merch</h2>
-      <p>Preorder for Hub Lakes 2026 t-shirts and sweatshirts has closed, but you can still preview the designs below and buy in person at the meet.</p>
-    </div>
-    <div class="award-link">
-      <div>
-        <h3>2026 Championship Tees &amp; Sweatshirts</h3>
-        <p style="color:#41473c; font-size:0.9rem;">Online preorder is closed. Use the link to preview what the shirts and sweatshirts look like &mdash; a limited number will be available to purchase in person on Saturday only.</p>
-      </div>
-      <a class="btn" href="https://promogeardesign.com/2026hubs/shop/home" target="_blank" rel="noopener">Preview the Designs &rarr;</a>
-    </div>
-    <div class="events-note" style="margin-top:36px;">
-      <strong>At the meet:</strong> California Beach Hut will also be on-site selling swimwear and swim essentials.
-    </div>
-  </div>
-</section>
-
-<div class="wave" style="background:#FFFFFF;">
-  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#0E1F14"/>
-  </svg>
-</div>
-
-<!-- DIRECTIONS -->
-<section class="section-deep" id="directions">
-  <div class="wrap">
-    <div class="section-head" style="margin-left:auto; margin-right:auto; text-align:center;">
-      <span class="banner-label">Getting there</span>
-      <h2>Directions &amp; parking</h2>
-    </div>
-    <div class="directions-stack">
-      <div class="info-block info-block-map">
-        <div class="map-embed">
-          <iframe src="https://www.google.com/maps?q=91+East+Shore+Road+Denville+NJ+07834&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Indian Lake at 91 East Shore Road, Denville, NJ"></iframe>
-        </div>
-        <div>
-          <h3>Address</h3>
-          <p>91 East Shore Road<br>Denville, NJ 07834</p>
-          <div style="margin-top:14px;">
-            <a class="btn on-dark" href="https://www.google.com/maps/search/?api=1&query=91+East+Shore+Road+Denville+NJ+07834" target="_blank" rel="noopener">Get Directions &rarr;</a>
-          </div>
-        </div>
-      </div>
-      <div class="parking-alert">
-        <strong>Parking:</strong> Please park on the street. The parking lot at Indian Lake is reserved for coaches and officials only.
-      </div>
-      <div class="parking-alert" style="margin-top:16px;">
-        <strong>Tents:</strong> Tents can be dropped off only after 6pm on Friday. Space is limited. Please share tents with multiple families.
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="wave" style="background:#0E1F14;">
-  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path class="wave-path" d="M0,30 C150,0 350,60 600,30 C850,0 1050,60 1200,30 L1200,60 L0,60 Z" fill="#FFFFFF"/>
-  </svg>
-</div>
-
 <!-- SCHEDULE -->
 <section id="schedule">
   <div class="wrap">
@@ -532,7 +471,43 @@
 
 <div class="wave" style="background:#FFFFFF;">
   <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#EEF1EA"/>
+    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#0E1F14"/>
+  </svg>
+</div>
+
+<!-- DIRECTIONS -->
+<section class="section-deep" id="directions">
+  <div class="wrap">
+    <div class="section-head" style="margin-left:auto; margin-right:auto; text-align:center;">
+      <span class="banner-label">Getting there</span>
+      <h2>Directions &amp; parking</h2>
+    </div>
+    <div class="directions-stack">
+      <div class="info-block info-block-map">
+        <div class="map-embed">
+          <iframe src="https://www.google.com/maps?q=91+East+Shore+Road+Denville+NJ+07834&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Indian Lake at 91 East Shore Road, Denville, NJ"></iframe>
+        </div>
+        <div>
+          <h3>Address</h3>
+          <p>91 East Shore Road<br>Denville, NJ 07834</p>
+          <div style="margin-top:14px;">
+            <a class="btn on-dark" href="https://www.google.com/maps/search/?api=1&query=91+East+Shore+Road+Denville+NJ+07834" target="_blank" rel="noopener">Get Directions &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <div class="parking-alert">
+        <strong>Parking:</strong> Please park on the street. The parking lot at Indian Lake is reserved for coaches and officials only.
+      </div>
+      <div class="parking-alert" style="margin-top:16px;">
+        <strong>Tents:</strong> Tents can be dropped off only after 6pm on Friday. Each team will have a designated area. Space is limited. Please share tents with multiple families.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:#0E1F14;">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path" d="M0,30 C150,0 350,60 600,30 C850,0 1050,60 1200,30 L1200,60 L0,60 Z" fill="#EEF1EA"/>
   </svg>
 </div>
 
@@ -581,7 +556,7 @@
     <div class="section-head">
       <span class="banner-label">Fuel up</span>
       <h2>Concessions</h2>
-      <p>Grab a bite between events.</p>
+      <p>Grab a bite between events. Cash or Venmo accepted.</p>
     </div>
     <div class="thanks-grid">
       <div class="card thanks-card">
@@ -628,6 +603,33 @@
 
 <div class="wave" style="background:#0E1F14;">
   <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#EEF1EA"/>
+  </svg>
+</div>
+
+<!-- MERCH -->
+<section class="section-tint" id="merch">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="banner-label">Gear up</span>
+      <h2>Meet merch</h2>
+      <p>Preorder for Hub Lakes 2026 t-shirts and sweatshirts has closed, but you can still preview the designs below and buy in person at the meet.</p>
+    </div>
+    <div class="award-link">
+      <div>
+        <h3>2026 Championship Tees &amp; Sweatshirts</h3>
+        <p style="color:#41473c; font-size:0.9rem;">Online preorder is closed. Use the link to preview what the shirts and sweatshirts look like &mdash; a limited number will be available to purchase in person on Saturday only.</p>
+      </div>
+      <a class="btn" href="https://promogeardesign.com/2026hubs/shop/home" target="_blank" rel="noopener">Preview the Designs &rarr;</a>
+    </div>
+    <div class="events-note" style="margin-top:36px;">
+      <strong>At the meet:</strong> California Beach Hut will also be on-site selling swimwear and swim essentials.
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:#EEF1EA;">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path class="wave-path" d="M0,15 C150,45 350,-15 600,15 C850,45 1050,-15 1200,15 L1200,60 L0,60 Z" fill="#FFFFFF"/>
   </svg>
 </div>
@@ -638,7 +640,6 @@
     <div class="section-head">
       <span class="banner-label">What</span>
       <h2>Events</h2>
-      <p>The full event list for all three sessions, printed below.</p>
     </div>
     <div class="records-controls">
       <input type="text" id="eventSearch" placeholder="Search events&hellip; e.g. &quot;Breast&quot; or &quot;11-12&quot;">
@@ -864,7 +865,10 @@
         </tbody>
       </table>
     </div>
-    <p class="foot-note">*Events marked with a single asterisk (12R, 13R) are retired events, retired in 2018, kept for historical reference. Events marked with a double asterisk (60M/Y, 72M/Y) were added in 2024. Events 10Y and 67 reflect ties between multiple swimmers or teams. Pool lengths by lake: Cedar 25M &middot; Indian 25Y &amp; 50M &middot; Mountain 25Y &amp; 50M &middot; Pirate (Par Lake) 25M &amp; 50M &middot; Rock Ridge 25Y &middot; Valhalla 25M &amp; 50M &middot; White Meadow 25M &amp; 50M. Edition 7/2025.</p>
+    <p class="foot-note">*12R and *13R are retired events, kept for historical reference.</p>
+    <p class="foot-note">**60M/Y and **72M/Y were added in 2024.</p>
+    <p class="foot-note">Events 10Y and 67 reflect ties between multiple swimmers or teams.</p>
+    <p class="foot-note">Lane lengths by lake: Cedar 25M &middot; Indian 25Y &amp; 50M &middot; Mountain 25Y &amp; 50M &middot; Pirate (Par Lake) 25M &amp; 50M &middot; Rock Ridge 25Y &middot; White Meadow 25M &amp; 50M.</p>
   </div>
 </section>
 
@@ -1116,9 +1120,6 @@
         <div class="team">Rock Ridge Lake</div>
         <div class="bio">Jack will study Risk Management and Insurance at the University of Georgia. Go Dawgs!</div>
       </div>
-    </div>
-    <div class="info-block" style="text-align:center; margin-top:28px; margin-bottom:0;">
-      <p>Want to add your senior swimmer? Contact your lake's parent delegate to find out how!</p>
     </div>
   </div>
 </section>
