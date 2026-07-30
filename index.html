@@ -264,6 +264,13 @@
     margin-bottom:26px; font-size:0.92rem; color:#41473c;
   }
   .events-note strong{color:var(--green-deep);}
+  .events-day{margin-bottom:36px;}
+  .events-day:last-child{margin-bottom:0;}
+  .events-day-head{
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    gap:8px; margin-bottom:14px;
+  }
+  .events-day-head h3{font-size:1.25rem; color:var(--ink);}
   .table-scroll{overflow-x:auto; overflow-y:auto; max-height:520px; border:1px solid #dde3d6; border-radius:6px;}
   #events .table-scroll{max-width:640px; margin:0 auto;}
   table.plain{width:100%; border-collapse:collapse; table-layout:fixed; font-size:0.88rem; background:var(--white);}
@@ -641,91 +648,161 @@
       <span class="banner-label">What</span>
       <h2>Events</h2>
     </div>
+    <div class="events-note">
+      <strong>Friday Night Distance:</strong> Events 73 &amp; 74 (400 Free) swim Friday evening as part of the Distance Session &mdash; see Schedule for times.
+    </div>
     <div class="records-controls">
       <input type="text" id="eventSearch" placeholder="Search events&hellip; e.g. &quot;Breast&quot; or &quot;11-12&quot;">
     </div>
-    <div class="table-scroll">
-      <table class="plain" id="eventsTable">
-        <thead>
-          <tr><th>Event #</th><th>Event</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="evtnum">1</td><td>Mixed 8&amp;U 100 Medley Relay</td></tr>
-          <tr><td class="evtnum">2</td><td>Mixed 9-10 100 Medley Relay</td></tr>
-          <tr><td class="evtnum">3</td><td>Mixed 11-12 200 Medley Relay</td></tr>
-          <tr><td class="evtnum">4</td><td>Mixed 13-14 200 Medley Relay</td></tr>
-          <tr><td class="evtnum">5</td><td>Mixed 15-19 200 Medley Relay</td></tr>
-          <tr><td class="evtnum">6</td><td>Male 18&amp;O 200 Medley Relay</td></tr>
-          <tr><td class="evtnum">7</td><td>Female 18&amp;O 200 Medley Relay</td></tr>
-          <tr><td class="evtnum">8</td><td>Male 6&amp;U 25 Free</td></tr>
-          <tr><td class="evtnum">9</td><td>Female 6&amp;U 25 Free</td></tr>
-          <tr><td class="evtnum">10</td><td>Male 7-8 25 Free</td></tr>
-          <tr><td class="evtnum">11</td><td>Female 7-8 25 Free</td></tr>
-          <tr><td class="evtnum">12</td><td>Male 13-18 100 IM</td></tr>
-          <tr><td class="evtnum">13</td><td>Female 13-18 100 IM</td></tr>
-          <tr><td class="evtnum">14</td><td>Male 9-10 50 Free</td></tr>
-          <tr><td class="evtnum">15</td><td>Female 9-10 50 Free</td></tr>
-          <tr><td class="evtnum">16</td><td>Male 11-12 50 Free</td></tr>
-          <tr><td class="evtnum">17</td><td>Female 11-12 50 Free</td></tr>
-          <tr><td class="evtnum">18</td><td>Male 13-14 50 Free</td></tr>
-          <tr><td class="evtnum">19</td><td>Female 13-14 50 Free</td></tr>
-          <tr><td class="evtnum">20</td><td>Male 15-19 50 Free</td></tr>
-          <tr><td class="evtnum">21</td><td>Female 15-19 50 Free</td></tr>
-          <tr><td class="evtnum">22</td><td>Male 8&amp;U 25 Breast</td></tr>
-          <tr><td class="evtnum">23</td><td>Female 8&amp;U 25 Breast</td></tr>
-          <tr><td class="evtnum">24</td><td>Male 9-10 50 Breast</td></tr>
-          <tr><td class="evtnum">25</td><td>Female 9-10 50 Breast</td></tr>
-          <tr><td class="evtnum">26</td><td>Male 11-12 50 Breast</td></tr>
-          <tr><td class="evtnum">27</td><td>Female 11-12 50 Breast</td></tr>
-          <tr><td class="evtnum">28</td><td>Male 13-14 50 Breast</td></tr>
-          <tr><td class="evtnum">29</td><td>Female 13-14 50 Breast</td></tr>
-          <tr><td class="evtnum">30</td><td>Male 15-19 50 Breast</td></tr>
-          <tr><td class="evtnum">31</td><td>Female 15-19 50 Breast</td></tr>
-          <tr><td class="evtnum">32</td><td>Male 18&amp;O 200 Free Relay</td></tr>
-          <tr><td class="evtnum">33</td><td>Female 18&amp;O 200 Free Relay</td></tr>
-          <tr><td class="evtnum">34</td><td>Male 13-19 100 Free</td></tr>
-          <tr><td class="evtnum">35</td><td>Female 13-19 100 Free</td></tr>
-          <tr><td class="evtnum">36</td><td>Male 12&amp;U 100 IM</td></tr>
-          <tr><td class="evtnum">37</td><td>Female 12&amp;U 100 IM</td></tr>
-          <tr><td class="evtnum">38</td><td>Male 6&amp;U 25 Back</td></tr>
-          <tr><td class="evtnum">39</td><td>Female 6&amp;U 25 Back</td></tr>
-          <tr><td class="evtnum">40</td><td>Male 7-8 25 Back</td></tr>
-          <tr><td class="evtnum">41</td><td>Female 7-8 25 Back</td></tr>
-          <tr><td class="evtnum">42</td><td>Male 9-10 50 Back</td></tr>
-          <tr><td class="evtnum">43</td><td>Female 9-10 50 Back</td></tr>
-          <tr><td class="evtnum">44</td><td>Male 11-12 50 Back</td></tr>
-          <tr><td class="evtnum">45</td><td>Female 11-12 50 Back</td></tr>
-          <tr><td class="evtnum">46</td><td>Male 13-14 50 Back</td></tr>
-          <tr><td class="evtnum">47</td><td>Female 13-14 50 Back</td></tr>
-          <tr><td class="evtnum">48</td><td>Male 15-19 50 Back</td></tr>
-          <tr><td class="evtnum">49</td><td>Female 15-19 50 Back</td></tr>
-          <tr><td class="evtnum">50</td><td>Male 8&amp;U 25 Fly</td></tr>
-          <tr><td class="evtnum">51</td><td>Female 8&amp;U 25 Fly</td></tr>
-          <tr><td class="evtnum">52</td><td>Male 9-10 25 Fly</td></tr>
-          <tr><td class="evtnum">53</td><td>Female 9-10 25 Fly</td></tr>
-          <tr><td class="evtnum">54</td><td>Male 11-12 50 Fly</td></tr>
-          <tr><td class="evtnum">55</td><td>Female 11-12 50 Fly</td></tr>
-          <tr><td class="evtnum">56</td><td>Male 13-14 50 Fly</td></tr>
-          <tr><td class="evtnum">57</td><td>Female 13-14 50 Fly</td></tr>
-          <tr><td class="evtnum">58</td><td>Male 15-19 50 Fly</td></tr>
-          <tr><td class="evtnum">59</td><td>Female 15-19 50 Fly</td></tr>
-          <tr><td class="evtnum">60</td><td>Mixed 6&amp;U 100 Free Relay</td></tr>
-          <tr><td class="evtnum">61</td><td>Mixed 8&amp;U 100 Free Relay</td></tr>
-          <tr><td class="evtnum">62</td><td>Male 9-10 200 Free Relay</td></tr>
-          <tr><td class="evtnum">63</td><td>Female 9-10 200 Free Relay</td></tr>
-          <tr><td class="evtnum">64</td><td>Male 11-12 200 Free Relay</td></tr>
-          <tr><td class="evtnum">65</td><td>Female 11-12 200 Free Relay</td></tr>
-          <tr><td class="evtnum">66</td><td>Male 13-14 200 Free Relay</td></tr>
-          <tr><td class="evtnum">67</td><td>Female 13-14 200 Free Relay</td></tr>
-          <tr><td class="evtnum">68</td><td>Male 15-19 200 Free Relay</td></tr>
-          <tr><td class="evtnum">69</td><td>Female 15-19 200 Free Relay</td></tr>
-          <tr><td class="evtnum">70</td><td>Male 35&amp;O 100 Free Relay</td></tr>
-          <tr><td class="evtnum">71</td><td>Female 35&amp;O 100 Free Relay</td></tr>
-          <tr><td class="evtnum">72</td><td>Mixed 50&amp;O 100 Free Relay</td></tr>
-          <tr><td class="evtnum">73</td><td>Male 12&amp;O 400 Free</td></tr>
-          <tr><td class="evtnum">74</td><td>Female 12&amp;O 400 Free</td></tr>
-        </tbody>
-      </table>
+    <div class="events-day">
+      <div class="events-day-head">
+        <h3>Saturday &ndash; Prelims</h3>
+      </div>
+      <div class="table-scroll">
+        <table class="plain events-table">
+          <thead>
+            <tr><th>Event #</th><th>Event</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="evtnum">8</td><td>Male 6&amp;U 25 Free</td></tr>
+            <tr><td class="evtnum">9</td><td>Female 6&amp;U 25 Free</td></tr>
+            <tr><td class="evtnum">10</td><td>Male 7-8 25 Free</td></tr>
+            <tr><td class="evtnum">11</td><td>Female 7-8 25 Free</td></tr>
+            <tr><td class="evtnum">12</td><td>Male 13-18 100 IM</td></tr>
+            <tr><td class="evtnum">13</td><td>Female 13-18 100 IM</td></tr>
+            <tr><td class="evtnum">14</td><td>Male 9-10 50 Free</td></tr>
+            <tr><td class="evtnum">15</td><td>Female 9-10 50 Free</td></tr>
+            <tr><td class="evtnum">16</td><td>Male 11-12 50 Free</td></tr>
+            <tr><td class="evtnum">17</td><td>Female 11-12 50 Free</td></tr>
+            <tr><td class="evtnum">18</td><td>Male 13-14 50 Free</td></tr>
+            <tr><td class="evtnum">19</td><td>Female 13-14 50 Free</td></tr>
+            <tr><td class="evtnum">20</td><td>Male 15-19 50 Free</td></tr>
+            <tr><td class="evtnum">21</td><td>Female 15-19 50 Free</td></tr>
+            <tr><td class="evtnum">22</td><td>Male 8&amp;U 25 Breast</td></tr>
+            <tr><td class="evtnum">23</td><td>Female 8&amp;U 25 Breast</td></tr>
+            <tr><td class="evtnum">24</td><td>Male 9-10 50 Breast</td></tr>
+            <tr><td class="evtnum">25</td><td>Female 9-10 50 Breast</td></tr>
+            <tr><td class="evtnum">26</td><td>Male 11-12 50 Breast</td></tr>
+            <tr><td class="evtnum">27</td><td>Female 11-12 50 Breast</td></tr>
+            <tr><td class="evtnum">28</td><td>Male 13-14 50 Breast</td></tr>
+            <tr><td class="evtnum">29</td><td>Female 13-14 50 Breast</td></tr>
+            <tr><td class="evtnum">30</td><td>Male 15-19 50 Breast</td></tr>
+            <tr><td class="evtnum">31</td><td>Female 15-19 50 Breast</td></tr>
+            <tr><td class="evtnum">34</td><td>Male 13-19 100 Free</td></tr>
+            <tr><td class="evtnum">35</td><td>Female 13-19 100 Free</td></tr>
+            <tr><td class="evtnum">36</td><td>Male 12&amp;U 100 IM</td></tr>
+            <tr><td class="evtnum">37</td><td>Female 12&amp;U 100 IM</td></tr>
+            <tr><td class="evtnum">38</td><td>Male 6&amp;U 25 Back</td></tr>
+            <tr><td class="evtnum">39</td><td>Female 6&amp;U 25 Back</td></tr>
+            <tr><td class="evtnum">40</td><td>Male 7-8 25 Back</td></tr>
+            <tr><td class="evtnum">41</td><td>Female 7-8 25 Back</td></tr>
+            <tr><td class="evtnum">42</td><td>Male 9-10 50 Back</td></tr>
+            <tr><td class="evtnum">43</td><td>Female 9-10 50 Back</td></tr>
+            <tr><td class="evtnum">44</td><td>Male 11-12 50 Back</td></tr>
+            <tr><td class="evtnum">45</td><td>Female 11-12 50 Back</td></tr>
+            <tr><td class="evtnum">46</td><td>Male 13-14 50 Back</td></tr>
+            <tr><td class="evtnum">47</td><td>Female 13-14 50 Back</td></tr>
+            <tr><td class="evtnum">48</td><td>Male 15-19 50 Back</td></tr>
+            <tr><td class="evtnum">49</td><td>Female 15-19 50 Back</td></tr>
+            <tr><td class="evtnum">50</td><td>Male 8&amp;U 25 Fly</td></tr>
+            <tr><td class="evtnum">51</td><td>Female 8&amp;U 25 Fly</td></tr>
+            <tr><td class="evtnum">52</td><td>Male 9-10 25 Fly</td></tr>
+            <tr><td class="evtnum">53</td><td>Female 9-10 25 Fly</td></tr>
+            <tr><td class="evtnum">54</td><td>Male 11-12 50 Fly</td></tr>
+            <tr><td class="evtnum">55</td><td>Female 11-12 50 Fly</td></tr>
+            <tr><td class="evtnum">56</td><td>Male 13-14 50 Fly</td></tr>
+            <tr><td class="evtnum">57</td><td>Female 13-14 50 Fly</td></tr>
+            <tr><td class="evtnum">58</td><td>Male 15-19 50 Fly</td></tr>
+            <tr><td class="evtnum">59</td><td>Female 15-19 50 Fly</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="events-day">
+      <div class="events-day-head">
+        <h3>Sunday &ndash; Finals</h3>
+      </div>
+      <div class="table-scroll">
+        <table class="plain events-table">
+          <thead>
+            <tr><th>Event #</th><th>Event</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="evtnum">1</td><td>Mixed 8&amp;U 100 Medley Relay</td></tr>
+            <tr><td class="evtnum">2</td><td>Mixed 9-10 100 Medley Relay</td></tr>
+            <tr><td class="evtnum">3</td><td>Mixed 11-12 200 Medley Relay</td></tr>
+            <tr><td class="evtnum">4</td><td>Mixed 13-14 200 Medley Relay</td></tr>
+            <tr><td class="evtnum">5</td><td>Mixed 15-19 200 Medley Relay</td></tr>
+            <tr><td class="evtnum">6</td><td>Male 18&amp;O 200 Medley Relay</td></tr>
+            <tr><td class="evtnum">7</td><td>Female 18&amp;O 200 Medley Relay</td></tr>
+            <tr><td class="evtnum">8</td><td>Male 6&amp;U 25 Free</td></tr>
+            <tr><td class="evtnum">9</td><td>Female 6&amp;U 25 Free</td></tr>
+            <tr><td class="evtnum">10</td><td>Male 7-8 25 Free</td></tr>
+            <tr><td class="evtnum">11</td><td>Female 7-8 25 Free</td></tr>
+            <tr><td class="evtnum">12</td><td>Male 13-18 100 IM</td></tr>
+            <tr><td class="evtnum">13</td><td>Female 13-18 100 IM</td></tr>
+            <tr><td class="evtnum">14</td><td>Male 9-10 50 Free</td></tr>
+            <tr><td class="evtnum">15</td><td>Female 9-10 50 Free</td></tr>
+            <tr><td class="evtnum">16</td><td>Male 11-12 50 Free</td></tr>
+            <tr><td class="evtnum">17</td><td>Female 11-12 50 Free</td></tr>
+            <tr><td class="evtnum">18</td><td>Male 13-14 50 Free</td></tr>
+            <tr><td class="evtnum">19</td><td>Female 13-14 50 Free</td></tr>
+            <tr><td class="evtnum">20</td><td>Male 15-19 50 Free</td></tr>
+            <tr><td class="evtnum">21</td><td>Female 15-19 50 Free</td></tr>
+            <tr><td class="evtnum">22</td><td>Male 8&amp;U 25 Breast</td></tr>
+            <tr><td class="evtnum">23</td><td>Female 8&amp;U 25 Breast</td></tr>
+            <tr><td class="evtnum">24</td><td>Male 9-10 50 Breast</td></tr>
+            <tr><td class="evtnum">25</td><td>Female 9-10 50 Breast</td></tr>
+            <tr><td class="evtnum">26</td><td>Male 11-12 50 Breast</td></tr>
+            <tr><td class="evtnum">27</td><td>Female 11-12 50 Breast</td></tr>
+            <tr><td class="evtnum">28</td><td>Male 13-14 50 Breast</td></tr>
+            <tr><td class="evtnum">29</td><td>Female 13-14 50 Breast</td></tr>
+            <tr><td class="evtnum">30</td><td>Male 15-19 50 Breast</td></tr>
+            <tr><td class="evtnum">31</td><td>Female 15-19 50 Breast</td></tr>
+            <tr><td class="evtnum">32</td><td>Male 18&amp;O 200 Free Relay</td></tr>
+            <tr><td class="evtnum">33</td><td>Female 18&amp;O 200 Free Relay</td></tr>
+            <tr><td class="evtnum">34</td><td>Male 13-19 100 Free</td></tr>
+            <tr><td class="evtnum">35</td><td>Female 13-19 100 Free</td></tr>
+            <tr><td class="evtnum">36</td><td>Male 12&amp;U 100 IM</td></tr>
+            <tr><td class="evtnum">37</td><td>Female 12&amp;U 100 IM</td></tr>
+            <tr><td class="evtnum">38</td><td>Male 6&amp;U 25 Back</td></tr>
+            <tr><td class="evtnum">39</td><td>Female 6&amp;U 25 Back</td></tr>
+            <tr><td class="evtnum">40</td><td>Male 7-8 25 Back</td></tr>
+            <tr><td class="evtnum">41</td><td>Female 7-8 25 Back</td></tr>
+            <tr><td class="evtnum">42</td><td>Male 9-10 50 Back</td></tr>
+            <tr><td class="evtnum">43</td><td>Female 9-10 50 Back</td></tr>
+            <tr><td class="evtnum">44</td><td>Male 11-12 50 Back</td></tr>
+            <tr><td class="evtnum">45</td><td>Female 11-12 50 Back</td></tr>
+            <tr><td class="evtnum">46</td><td>Male 13-14 50 Back</td></tr>
+            <tr><td class="evtnum">47</td><td>Female 13-14 50 Back</td></tr>
+            <tr><td class="evtnum">48</td><td>Male 15-19 50 Back</td></tr>
+            <tr><td class="evtnum">49</td><td>Female 15-19 50 Back</td></tr>
+            <tr><td class="evtnum">50</td><td>Male 8&amp;U 25 Fly</td></tr>
+            <tr><td class="evtnum">51</td><td>Female 8&amp;U 25 Fly</td></tr>
+            <tr><td class="evtnum">52</td><td>Male 9-10 25 Fly</td></tr>
+            <tr><td class="evtnum">53</td><td>Female 9-10 25 Fly</td></tr>
+            <tr><td class="evtnum">54</td><td>Male 11-12 50 Fly</td></tr>
+            <tr><td class="evtnum">55</td><td>Female 11-12 50 Fly</td></tr>
+            <tr><td class="evtnum">56</td><td>Male 13-14 50 Fly</td></tr>
+            <tr><td class="evtnum">57</td><td>Female 13-14 50 Fly</td></tr>
+            <tr><td class="evtnum">58</td><td>Male 15-19 50 Fly</td></tr>
+            <tr><td class="evtnum">59</td><td>Female 15-19 50 Fly</td></tr>
+            <tr><td class="evtnum">60</td><td>Mixed 6&amp;U 100 Free Relay</td></tr>
+            <tr><td class="evtnum">61</td><td>Mixed 8&amp;U 100 Free Relay</td></tr>
+            <tr><td class="evtnum">62</td><td>Male 9-10 200 Free Relay</td></tr>
+            <tr><td class="evtnum">63</td><td>Female 9-10 200 Free Relay</td></tr>
+            <tr><td class="evtnum">64</td><td>Male 11-12 200 Free Relay</td></tr>
+            <tr><td class="evtnum">65</td><td>Female 11-12 200 Free Relay</td></tr>
+            <tr><td class="evtnum">66</td><td>Male 13-14 200 Free Relay</td></tr>
+            <tr><td class="evtnum">67</td><td>Female 13-14 200 Free Relay</td></tr>
+            <tr><td class="evtnum">68</td><td>Male 15-19 200 Free Relay</td></tr>
+            <tr><td class="evtnum">69</td><td>Female 15-19 200 Free Relay</td></tr>
+            <tr><td class="evtnum">70</td><td>Male 35&amp;O 100 Free Relay</td></tr>
+            <tr><td class="evtnum">71</td><td>Female 35&amp;O 100 Free Relay</td></tr>
+            <tr><td class="evtnum">72</td><td>Mixed 50&amp;O 100 Free Relay</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>
@@ -1209,7 +1286,7 @@
   });
 
   const eventSearch = document.getElementById('eventSearch');
-  const eventRows = document.querySelectorAll('#eventsTable tbody tr');
+  const eventRows = document.querySelectorAll('.events-table tbody tr');
   eventSearch.addEventListener('input', () => {
     const q = eventSearch.value.trim().toLowerCase();
     eventRows.forEach(r => {
