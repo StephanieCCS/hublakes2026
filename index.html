@@ -75,7 +75,7 @@
   nav.links a:hover{background:var(--green); color:var(--white);}
   .navToggle{display:none; background:none; border:none; color:var(--white); font-size:1.6rem; cursor:pointer;}
 
-  @media (max-width:900px){
+  @media (max-width:1120px){
     nav.links{
       position:fixed; top:56px; left:0; right:0; bottom:0;
       background:var(--deep); flex-direction:column; padding:20px 24px;
@@ -271,6 +271,12 @@
     gap:8px; margin-bottom:14px;
   }
   .events-day-head h3{font-size:1.25rem; color:var(--ink);}
+  .table-search-row td{padding:10px 12px; background:#f5fbfb; border-bottom:2px solid #dde3d6;}
+  .table-search-row .day-search{
+    width:100%; padding:9px 12px; border:2px solid var(--ink); border-radius:4px;
+    background:var(--white); color:var(--ink); font-family:'Space Mono',monospace; font-size:0.85rem;
+  }
+  .table-search-row .day-search::placeholder{color:#8c9385;}
   .table-scroll{overflow-x:auto; overflow-y:auto; max-height:520px; border:1px solid #dde3d6; border-radius:6px;}
   #events .table-scroll{max-width:640px; margin:0 auto;}
   table.plain{width:100%; border-collapse:collapse; table-layout:fixed; font-size:0.88rem; background:var(--white);}
@@ -313,6 +319,26 @@
     border-radius:6px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
   }
   .award-link h3{font-family:'Anton',sans-serif; margin-bottom:6px; font-size:1.05rem; color:var(--ink);}
+
+  /* ===== SPONSOR CALLOUT ===== */
+  .sponsor-callout{
+    background:linear-gradient(135deg, var(--green) 0%, var(--green-deep) 100%);
+    border-radius:8px; padding:26px 28px; margin-bottom:26px;
+    display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    box-shadow:0 6px 0 rgba(6,26,34,0.18);
+  }
+  .sponsor-callout h3{font-size:1.35rem; color:var(--white); margin-bottom:6px;}
+  .sponsor-callout p{color:#dcefd4; font-size:0.96rem;}
+
+  /* ===== TOP ANNOUNCEMENT BANNER ===== */
+  .top-banner{
+    display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
+    background:var(--green); color:var(--white); text-decoration:none; text-align:center;
+    padding:10px 20px; font-family:'Space Mono',monospace; font-size:0.8rem; letter-spacing:0.3px;
+    transition:background .15s;
+  }
+  .top-banner:hover{background:var(--green-deep);}
+  .top-banner .cta{font-weight:700; text-decoration:underline; white-space:nowrap;}
 
   /* ===== CLASS OF 2026 ===== */
   .seniors-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:20px;}
@@ -371,6 +397,11 @@
 </style>
 </head>
 <body>
+
+<a class="top-banner" href="ILCC Hub Lakes Ad Application 2026.pdf" target="_blank" rel="noopener">
+  <span>Celebrate your swimmers by sponsoring an event.</span>
+  <span class="cta">Sponsorship Info &rarr;</span>
+</a>
 
 <header>
   <div class="navbar">
@@ -648,11 +679,15 @@
       <span class="banner-label">What</span>
       <h2>Events</h2>
     </div>
+    <div class="sponsor-callout">
+      <div>
+        <h3>Sponsor an Event</h3>
+        <p>Celebrate your swimmers by sponsoring an event.</p>
+      </div>
+      <a class="btn on-dark" href="ILCC Hub Lakes Ad Application 2026.pdf" target="_blank" rel="noopener">Sponsorship Info &rarr;</a>
+    </div>
     <div class="events-note">
       <strong>Friday Night Distance:</strong> Events 73 &amp; 74 (400 Free) swim Friday evening as part of the Distance Session &mdash; see Schedule for times.
-    </div>
-    <div class="records-controls">
-      <input type="text" id="eventSearch" placeholder="Search events&hellip; e.g. &quot;Breast&quot; or &quot;11-12&quot;">
     </div>
     <div class="events-day">
       <div class="events-day-head">
@@ -664,9 +699,10 @@
       <div class="table-scroll">
         <table class="plain events-table">
           <thead>
-            <tr><th>Event #</th><th>Event</th></tr>
+            <tr><th>#</th><th>Event</th></tr>
           </thead>
           <tbody>
+            <tr class="table-search-row"><td colspan="2"><input type="text" class="day-search" placeholder="Search events&hellip; e.g. &quot;Breast&quot; or &quot;11-12&quot;"></td></tr>
             <tr><td class="evtnum">8</td><td>Male 6&amp;U 25 Free</td></tr>
             <tr><td class="evtnum">9</td><td>Female 6&amp;U 25 Free</td></tr>
             <tr><td class="evtnum">10</td><td>Male 7-8 25 Free</td></tr>
@@ -727,9 +763,10 @@
       <div class="table-scroll">
         <table class="plain events-table">
           <thead>
-            <tr><th>Event #</th><th>Event</th></tr>
+            <tr><th>#</th><th>Event</th></tr>
           </thead>
           <tbody>
+            <tr class="table-search-row"><td colspan="2"><input type="text" class="day-search" placeholder="Search events&hellip; e.g. &quot;Breast&quot; or &quot;11-12&quot;"></td></tr>
             <tr><td class="evtnum">1</td><td>Mixed 8&amp;U 100 Medley Relay</td></tr>
             <tr><td class="evtnum">2</td><td>Mixed 9-10 100 Medley Relay</td></tr>
             <tr><td class="evtnum">3</td><td>Mixed 11-12 200 Medley Relay</td></tr>
@@ -1287,12 +1324,13 @@
     });
   });
 
-  const eventSearch = document.getElementById('eventSearch');
-  const eventRows = document.querySelectorAll('.events-table tbody tr');
-  eventSearch.addEventListener('input', () => {
-    const q = eventSearch.value.trim().toLowerCase();
-    eventRows.forEach(r => {
-      r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+  document.querySelectorAll('.day-search').forEach(input => {
+    const rows = input.closest('.events-day').querySelectorAll('.events-table tbody tr:not(.table-search-row)');
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      rows.forEach(r => {
+        r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
     });
   });
 
