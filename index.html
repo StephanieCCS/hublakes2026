@@ -281,12 +281,16 @@
   #events .table-scroll{max-width:640px; margin:0 auto;}
   table.plain{width:100%; border-collapse:collapse; table-layout:fixed; font-size:0.88rem; background:var(--white);}
   table.plain thead th{
-    position:sticky; top:0; background:var(--deep); color:var(--white); text-align:left; padding:12px 14px;
+    position:sticky; top:0; background:var(--deep); color:var(--white); text-align:left; padding:12px 8px;
     font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.5px; font-size:0.7rem; white-space:nowrap;
   }
-  table.plain th:first-child, table.plain td.evtnum{width:64px;}
-  table.plain tbody td{padding:11px 14px; border-bottom:1px solid #e8ece2; vertical-align:top;}
+  table.plain th:nth-child(1), table.plain td.evtnum{width:13%;}
+  table.plain th:nth-child(2), table.plain td:nth-child(2){width:38%;}
+  table.plain th:nth-child(3), table.plain td.sponsor{width:49%;}
+  table.plain tbody td{padding:9px 8px; border-bottom:1px solid #e8ece2; vertical-align:top;}
   table.plain tbody tr:nth-child(even){background:#f5fbfb;}
+  table.plain tbody tr:not(.table-search-row):hover{background:#e4f7ea;}
+  table.plain td.sponsor{color:#41473c; font-size:0.82rem;}
   table.plain td.evtnum{font-family:'Space Mono',monospace; color:var(--green-deep); font-weight:700; white-space:nowrap;}
 
   /* ===== RECORDS ===== */
@@ -399,8 +403,8 @@
 <body>
 
 <a class="top-banner" href="ILCC Hub Lakes Ad Application 2026.pdf" target="_blank" rel="noopener">
-  <span>Celebrate your swimmers by sponsoring an event.</span>
-  <span class="cta">Sponsorship Info &rarr;</span>
+  <span>Celebrate your swimmers.</span>
+  <span class="cta">Sponsor an Event &rarr;</span>
 </a>
 
 <header>
@@ -699,59 +703,59 @@
       <div class="table-scroll">
         <table class="plain events-table">
           <thead>
-            <tr><th>#</th><th>Event</th></tr>
+            <tr><th>#</th><th>Event</th><th>Sponsored By</th></tr>
           </thead>
           <tbody>
-            <tr class="table-search-row"><td colspan="2"><input type="text" class="day-search" placeholder="Search events&hellip; e.g. &quot;Breast&quot; or &quot;11-12&quot;"></td></tr>
-            <tr><td class="evtnum">8</td><td>Male 6&amp;U 25 Free</td></tr>
-            <tr><td class="evtnum">9</td><td>Female 6&amp;U 25 Free</td></tr>
-            <tr><td class="evtnum">10</td><td>Male 7-8 25 Free</td></tr>
-            <tr><td class="evtnum">11</td><td>Female 7-8 25 Free</td></tr>
-            <tr><td class="evtnum">12</td><td>Male 13-18 100 IM</td></tr>
-            <tr><td class="evtnum">13</td><td>Female 13-18 100 IM</td></tr>
-            <tr><td class="evtnum">14</td><td>Male 9-10 50 Free</td></tr>
-            <tr><td class="evtnum">15</td><td>Female 9-10 50 Free</td></tr>
-            <tr><td class="evtnum">16</td><td>Male 11-12 50 Free</td></tr>
-            <tr><td class="evtnum">17</td><td>Female 11-12 50 Free</td></tr>
-            <tr><td class="evtnum">18</td><td>Male 13-14 50 Free</td></tr>
-            <tr><td class="evtnum">19</td><td>Female 13-14 50 Free</td></tr>
-            <tr><td class="evtnum">20</td><td>Male 15-19 50 Free</td></tr>
-            <tr><td class="evtnum">21</td><td>Female 15-19 50 Free</td></tr>
-            <tr><td class="evtnum">22</td><td>Male 8&amp;U 25 Breast</td></tr>
-            <tr><td class="evtnum">23</td><td>Female 8&amp;U 25 Breast</td></tr>
-            <tr><td class="evtnum">24</td><td>Male 9-10 50 Breast</td></tr>
-            <tr><td class="evtnum">25</td><td>Female 9-10 50 Breast</td></tr>
-            <tr><td class="evtnum">26</td><td>Male 11-12 50 Breast</td></tr>
-            <tr><td class="evtnum">27</td><td>Female 11-12 50 Breast</td></tr>
-            <tr><td class="evtnum">28</td><td>Male 13-14 50 Breast</td></tr>
-            <tr><td class="evtnum">29</td><td>Female 13-14 50 Breast</td></tr>
-            <tr><td class="evtnum">30</td><td>Male 15-19 50 Breast</td></tr>
-            <tr><td class="evtnum">31</td><td>Female 15-19 50 Breast</td></tr>
-            <tr><td class="evtnum">35</td><td>Female 13-19 100 Free</td></tr>
-            <tr><td class="evtnum">36</td><td>Male 12&amp;U 100 IM</td></tr>
-            <tr><td class="evtnum">37</td><td>Female 12&amp;U 100 IM</td></tr>
-            <tr><td class="evtnum">38</td><td>Male 6&amp;U 25 Back</td></tr>
-            <tr><td class="evtnum">39</td><td>Female 6&amp;U 25 Back</td></tr>
-            <tr><td class="evtnum">40</td><td>Male 7-8 25 Back</td></tr>
-            <tr><td class="evtnum">41</td><td>Female 7-8 25 Back</td></tr>
-            <tr><td class="evtnum">42</td><td>Male 9-10 50 Back</td></tr>
-            <tr><td class="evtnum">43</td><td>Female 9-10 50 Back</td></tr>
-            <tr><td class="evtnum">44</td><td>Male 11-12 50 Back</td></tr>
-            <tr><td class="evtnum">45</td><td>Female 11-12 50 Back</td></tr>
-            <tr><td class="evtnum">46</td><td>Male 13-14 50 Back</td></tr>
-            <tr><td class="evtnum">47</td><td>Female 13-14 50 Back</td></tr>
-            <tr><td class="evtnum">48</td><td>Male 15-19 50 Back</td></tr>
-            <tr><td class="evtnum">49</td><td>Female 15-19 50 Back</td></tr>
-            <tr><td class="evtnum">50</td><td>Male 8&amp;U 25 Fly</td></tr>
-            <tr><td class="evtnum">51</td><td>Female 8&amp;U 25 Fly</td></tr>
-            <tr><td class="evtnum">52</td><td>Male 9-10 25 Fly</td></tr>
-            <tr><td class="evtnum">53</td><td>Female 9-10 25 Fly</td></tr>
-            <tr><td class="evtnum">54</td><td>Male 11-12 50 Fly</td></tr>
-            <tr><td class="evtnum">55</td><td>Female 11-12 50 Fly</td></tr>
-            <tr><td class="evtnum">56</td><td>Male 13-14 50 Fly</td></tr>
-            <tr><td class="evtnum">57</td><td>Female 13-14 50 Fly</td></tr>
-            <tr><td class="evtnum">58</td><td>Male 15-19 50 Fly</td></tr>
-            <tr><td class="evtnum">59</td><td>Female 15-19 50 Fly</td></tr>
+            <tr class="table-search-row"><td colspan="3"><input type="text" class="day-search" placeholder="Search events&hellip; e.g. &quot;Breast&quot; or &quot;11-12&quot;"></td></tr>
+            <tr><td class="evtnum">8</td><td>Male 6&amp;U 25 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">9</td><td>Female 6&amp;U 25 Free</td><td class="sponsor">The Santos Family</td></tr>
+            <tr><td class="evtnum">10</td><td>Male 7-8 25 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">11</td><td>Female 7-8 25 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">12</td><td>Male 13-18 100 IM</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">13</td><td>Female 13-18 100 IM</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">14</td><td>Male 9-10 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">15</td><td>Female 9-10 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">16</td><td>Male 11-12 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">17</td><td>Female 11-12 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">18</td><td>Male 13-14 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">19</td><td>Female 13-14 50 Free</td><td class="sponsor">The McMahon Family</td></tr>
+            <tr><td class="evtnum">20</td><td>Male 15-19 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">21</td><td>Female 15-19 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">22</td><td>Male 8&amp;U 25 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">23</td><td>Female 8&amp;U 25 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">24</td><td>Male 9-10 50 Breast</td><td class="sponsor">The Lascarro Family</td></tr>
+            <tr><td class="evtnum">25</td><td>Female 9-10 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">26</td><td>Male 11-12 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">27</td><td>Female 11-12 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">28</td><td>Male 13-14 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">29</td><td>Female 13-14 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">30</td><td>Male 15-19 50 Breast</td><td class="sponsor">The Bertram Family</td></tr>
+            <tr><td class="evtnum">31</td><td>Female 15-19 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">35</td><td>Female 13-19 100 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">36</td><td>Male 12&amp;U 100 IM</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">37</td><td>Female 12&amp;U 100 IM</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">38</td><td>Male 6&amp;U 25 Back</td><td class="sponsor">The Santos Family</td></tr>
+            <tr><td class="evtnum">39</td><td>Female 6&amp;U 25 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">40</td><td>Male 7-8 25 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">41</td><td>Female 7-8 25 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">42</td><td>Male 9-10 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">43</td><td>Female 9-10 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">44</td><td>Male 11-12 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">45</td><td>Female 11-12 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">46</td><td>Male 13-14 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">47</td><td>Female 13-14 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">48</td><td>Male 15-19 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">49</td><td>Female 15-19 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">50</td><td>Male 8&amp;U 25 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">51</td><td>Female 8&amp;U 25 Fly</td><td class="sponsor">The Burmils &amp; E&amp;J's Gutter Gurus</td></tr>
+            <tr><td class="evtnum">52</td><td>Male 9-10 25 Fly</td><td class="sponsor">The Lascarros &amp; Denville Farmer's Market</td></tr>
+            <tr><td class="evtnum">53</td><td>Female 9-10 25 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">54</td><td>Male 11-12 50 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">55</td><td>Female 11-12 50 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">56</td><td>Male 13-14 50 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">57</td><td>Female 13-14 50 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">58</td><td>Male 15-19 50 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">59</td><td>Female 15-19 50 Fly</td><td class="sponsor"></td></tr>
           </tbody>
         </table>
       </div>
@@ -763,82 +767,82 @@
       <div class="table-scroll">
         <table class="plain events-table">
           <thead>
-            <tr><th>#</th><th>Event</th></tr>
+            <tr><th>#</th><th>Event</th><th>Sponsored By</th></tr>
           </thead>
           <tbody>
-            <tr class="table-search-row"><td colspan="2"><input type="text" class="day-search" placeholder="Search events&hellip; e.g. &quot;Breast&quot; or &quot;11-12&quot;"></td></tr>
-            <tr><td class="evtnum">1</td><td>Mixed 8&amp;U 100 Medley Relay</td></tr>
-            <tr><td class="evtnum">2</td><td>Mixed 9-10 100 Medley Relay</td></tr>
-            <tr><td class="evtnum">3</td><td>Mixed 11-12 200 Medley Relay</td></tr>
-            <tr><td class="evtnum">4</td><td>Mixed 13-14 200 Medley Relay</td></tr>
-            <tr><td class="evtnum">5</td><td>Mixed 15-19 200 Medley Relay</td></tr>
-            <tr><td class="evtnum">6</td><td>Male 18&amp;O 200 Medley Relay</td></tr>
-            <tr><td class="evtnum">7</td><td>Female 18&amp;O 200 Medley Relay</td></tr>
-            <tr><td class="evtnum">8</td><td>Male 6&amp;U 25 Free</td></tr>
-            <tr><td class="evtnum">9</td><td>Female 6&amp;U 25 Free</td></tr>
-            <tr><td class="evtnum">10</td><td>Male 7-8 25 Free</td></tr>
-            <tr><td class="evtnum">11</td><td>Female 7-8 25 Free</td></tr>
-            <tr><td class="evtnum">12</td><td>Male 13-18 100 IM</td></tr>
-            <tr><td class="evtnum">13</td><td>Female 13-18 100 IM</td></tr>
-            <tr><td class="evtnum">14</td><td>Male 9-10 50 Free</td></tr>
-            <tr><td class="evtnum">15</td><td>Female 9-10 50 Free</td></tr>
-            <tr><td class="evtnum">16</td><td>Male 11-12 50 Free</td></tr>
-            <tr><td class="evtnum">17</td><td>Female 11-12 50 Free</td></tr>
-            <tr><td class="evtnum">18</td><td>Male 13-14 50 Free</td></tr>
-            <tr><td class="evtnum">19</td><td>Female 13-14 50 Free</td></tr>
-            <tr><td class="evtnum">20</td><td>Male 15-19 50 Free</td></tr>
-            <tr><td class="evtnum">21</td><td>Female 15-19 50 Free</td></tr>
-            <tr><td class="evtnum">22</td><td>Male 8&amp;U 25 Breast</td></tr>
-            <tr><td class="evtnum">23</td><td>Female 8&amp;U 25 Breast</td></tr>
-            <tr><td class="evtnum">24</td><td>Male 9-10 50 Breast</td></tr>
-            <tr><td class="evtnum">25</td><td>Female 9-10 50 Breast</td></tr>
-            <tr><td class="evtnum">26</td><td>Male 11-12 50 Breast</td></tr>
-            <tr><td class="evtnum">27</td><td>Female 11-12 50 Breast</td></tr>
-            <tr><td class="evtnum">28</td><td>Male 13-14 50 Breast</td></tr>
-            <tr><td class="evtnum">29</td><td>Female 13-14 50 Breast</td></tr>
-            <tr><td class="evtnum">30</td><td>Male 15-19 50 Breast</td></tr>
-            <tr><td class="evtnum">31</td><td>Female 15-19 50 Breast</td></tr>
-            <tr><td class="evtnum">32</td><td>Male 18&amp;O 200 Free Relay</td></tr>
-            <tr><td class="evtnum">33</td><td>Female 18&amp;O 200 Free Relay</td></tr>
-            <tr><td class="evtnum">34</td><td>Male 13-19 100 Free</td></tr>
-            <tr><td class="evtnum">35</td><td>Female 13-19 100 Free</td></tr>
-            <tr><td class="evtnum">36</td><td>Male 12&amp;U 100 IM</td></tr>
-            <tr><td class="evtnum">37</td><td>Female 12&amp;U 100 IM</td></tr>
-            <tr><td class="evtnum">38</td><td>Male 6&amp;U 25 Back</td></tr>
-            <tr><td class="evtnum">39</td><td>Female 6&amp;U 25 Back</td></tr>
-            <tr><td class="evtnum">40</td><td>Male 7-8 25 Back</td></tr>
-            <tr><td class="evtnum">41</td><td>Female 7-8 25 Back</td></tr>
-            <tr><td class="evtnum">42</td><td>Male 9-10 50 Back</td></tr>
-            <tr><td class="evtnum">43</td><td>Female 9-10 50 Back</td></tr>
-            <tr><td class="evtnum">44</td><td>Male 11-12 50 Back</td></tr>
-            <tr><td class="evtnum">45</td><td>Female 11-12 50 Back</td></tr>
-            <tr><td class="evtnum">46</td><td>Male 13-14 50 Back</td></tr>
-            <tr><td class="evtnum">47</td><td>Female 13-14 50 Back</td></tr>
-            <tr><td class="evtnum">48</td><td>Male 15-19 50 Back</td></tr>
-            <tr><td class="evtnum">49</td><td>Female 15-19 50 Back</td></tr>
-            <tr><td class="evtnum">50</td><td>Male 8&amp;U 25 Fly</td></tr>
-            <tr><td class="evtnum">51</td><td>Female 8&amp;U 25 Fly</td></tr>
-            <tr><td class="evtnum">52</td><td>Male 9-10 25 Fly</td></tr>
-            <tr><td class="evtnum">53</td><td>Female 9-10 25 Fly</td></tr>
-            <tr><td class="evtnum">54</td><td>Male 11-12 50 Fly</td></tr>
-            <tr><td class="evtnum">55</td><td>Female 11-12 50 Fly</td></tr>
-            <tr><td class="evtnum">56</td><td>Male 13-14 50 Fly</td></tr>
-            <tr><td class="evtnum">57</td><td>Female 13-14 50 Fly</td></tr>
-            <tr><td class="evtnum">58</td><td>Male 15-19 50 Fly</td></tr>
-            <tr><td class="evtnum">59</td><td>Female 15-19 50 Fly</td></tr>
-            <tr><td class="evtnum">60</td><td>Mixed 6&amp;U 100 Free Relay</td></tr>
-            <tr><td class="evtnum">61</td><td>Mixed 8&amp;U 100 Free Relay</td></tr>
-            <tr><td class="evtnum">62</td><td>Male 9-10 200 Free Relay</td></tr>
-            <tr><td class="evtnum">63</td><td>Female 9-10 200 Free Relay</td></tr>
-            <tr><td class="evtnum">64</td><td>Male 11-12 200 Free Relay</td></tr>
-            <tr><td class="evtnum">65</td><td>Female 11-12 200 Free Relay</td></tr>
-            <tr><td class="evtnum">66</td><td>Male 13-14 200 Free Relay</td></tr>
-            <tr><td class="evtnum">67</td><td>Female 13-14 200 Free Relay</td></tr>
-            <tr><td class="evtnum">68</td><td>Male 15-19 200 Free Relay</td></tr>
-            <tr><td class="evtnum">69</td><td>Female 15-19 200 Free Relay</td></tr>
-            <tr><td class="evtnum">70</td><td>Male 35&amp;O 100 Free Relay</td></tr>
-            <tr><td class="evtnum">71</td><td>Female 35&amp;O 100 Free Relay</td></tr>
-            <tr><td class="evtnum">72</td><td>Mixed 50&amp;O 100 Free Relay</td></tr>
+            <tr class="table-search-row"><td colspan="3"><input type="text" class="day-search" placeholder="Search events&hellip; e.g. &quot;Breast&quot; or &quot;11-12&quot;"></td></tr>
+            <tr><td class="evtnum">1</td><td>Mixed 8&amp;U 100 Medley Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">2</td><td>Mixed 9-10 100 Medley Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">3</td><td>Mixed 11-12 200 Medley Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">4</td><td>Mixed 13-14 200 Medley Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">5</td><td>Mixed 15-19 200 Medley Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">6</td><td>Male 18&amp;O 200 Medley Relay</td><td class="sponsor">The Alblas Family</td></tr>
+            <tr><td class="evtnum">7</td><td>Female 18&amp;O 200 Medley Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">8</td><td>Male 6&amp;U 25 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">9</td><td>Female 6&amp;U 25 Free</td><td class="sponsor">The Santos Family</td></tr>
+            <tr><td class="evtnum">10</td><td>Male 7-8 25 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">11</td><td>Female 7-8 25 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">12</td><td>Male 13-18 100 IM</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">13</td><td>Female 13-18 100 IM</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">14</td><td>Male 9-10 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">15</td><td>Female 9-10 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">16</td><td>Male 11-12 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">17</td><td>Female 11-12 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">18</td><td>Male 13-14 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">19</td><td>Female 13-14 50 Free</td><td class="sponsor">The McMahon Family</td></tr>
+            <tr><td class="evtnum">20</td><td>Male 15-19 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">21</td><td>Female 15-19 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">22</td><td>Male 8&amp;U 25 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">23</td><td>Female 8&amp;U 25 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">24</td><td>Male 9-10 50 Breast</td><td class="sponsor">The Lascarro Family</td></tr>
+            <tr><td class="evtnum">25</td><td>Female 9-10 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">26</td><td>Male 11-12 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">27</td><td>Female 11-12 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">28</td><td>Male 13-14 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">29</td><td>Female 13-14 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">30</td><td>Male 15-19 50 Breast</td><td class="sponsor">The Bertram Family</td></tr>
+            <tr><td class="evtnum">31</td><td>Female 15-19 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">32</td><td>Male 18&amp;O 200 Free Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">33</td><td>Female 18&amp;O 200 Free Relay</td><td class="sponsor">The Zuffi Family</td></tr>
+            <tr><td class="evtnum">34</td><td>Male 13-19 100 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">35</td><td>Female 13-19 100 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">36</td><td>Male 12&amp;U 100 IM</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">37</td><td>Female 12&amp;U 100 IM</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">38</td><td>Male 6&amp;U 25 Back</td><td class="sponsor">The Santos Family</td></tr>
+            <tr><td class="evtnum">39</td><td>Female 6&amp;U 25 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">40</td><td>Male 7-8 25 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">41</td><td>Female 7-8 25 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">42</td><td>Male 9-10 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">43</td><td>Female 9-10 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">44</td><td>Male 11-12 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">45</td><td>Female 11-12 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">46</td><td>Male 13-14 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">47</td><td>Female 13-14 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">48</td><td>Male 15-19 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">49</td><td>Female 15-19 50 Back</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">50</td><td>Male 8&amp;U 25 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">51</td><td>Female 8&amp;U 25 Fly</td><td class="sponsor">The Burmils &amp; E&amp;J's Gutter Gurus</td></tr>
+            <tr><td class="evtnum">52</td><td>Male 9-10 25 Fly</td><td class="sponsor">The Lascarros &amp; Denville Farmer's Market</td></tr>
+            <tr><td class="evtnum">53</td><td>Female 9-10 25 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">54</td><td>Male 11-12 50 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">55</td><td>Female 11-12 50 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">56</td><td>Male 13-14 50 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">57</td><td>Female 13-14 50 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">58</td><td>Male 15-19 50 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">59</td><td>Female 15-19 50 Fly</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">60</td><td>Mixed 6&amp;U 100 Free Relay</td><td class="sponsor">Lakeside Nutrition</td></tr>
+            <tr><td class="evtnum">61</td><td>Mixed 8&amp;U 100 Free Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">62</td><td>Male 9-10 200 Free Relay</td><td class="sponsor">The Lascarros &amp; Denville Farmer's Market</td></tr>
+            <tr><td class="evtnum">63</td><td>Female 9-10 200 Free Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">64</td><td>Male 11-12 200 Free Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">65</td><td>Female 11-12 200 Free Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">66</td><td>Male 13-14 200 Free Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">67</td><td>Female 13-14 200 Free Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">68</td><td>Male 15-19 200 Free Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">69</td><td>Female 15-19 200 Free Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">70</td><td>Male 35&amp;O 100 Free Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">71</td><td>Female 35&amp;O 100 Free Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">72</td><td>Mixed 50&amp;O 100 Free Relay</td><td class="sponsor"></td></tr>
           </tbody>
         </table>
       </div>
