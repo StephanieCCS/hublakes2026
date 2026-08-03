@@ -332,26 +332,6 @@
   }
   .award-link h3{font-family:'Anton',sans-serif; margin-bottom:6px; font-size:1.05rem; color:var(--ink);}
 
-  /* ===== SPONSOR CALLOUT ===== */
-  .sponsor-callout{
-    background:linear-gradient(135deg, var(--green) 0%, var(--green-deep) 100%);
-    border-radius:8px; padding:26px 28px; margin-bottom:26px;
-    display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
-    box-shadow:0 6px 0 rgba(6,26,34,0.18);
-  }
-  .sponsor-callout h3{font-size:1.35rem; color:var(--white); margin-bottom:6px;}
-  .sponsor-callout p{color:#dcefd4; font-size:0.96rem;}
-
-  /* ===== TOP ANNOUNCEMENT BANNER ===== */
-  .top-banner{
-    display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
-    background:var(--green); color:var(--white); text-decoration:none; text-align:center;
-    padding:10px 20px; font-family:'Space Mono',monospace; font-size:0.8rem; letter-spacing:0.3px;
-    transition:background .15s;
-  }
-  .top-banner:hover{background:var(--green-deep);}
-  .top-banner .cta{font-weight:700; text-decoration:underline; white-space:nowrap;}
-
   /* ===== CLASS OF 2026 ===== */
   .seniors-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:20px;}
   @media (max-width:1000px){.seniors-grid{grid-template-columns:repeat(3,1fr);}}
@@ -410,11 +390,6 @@
 </head>
 <body>
 
-<a class="top-banner" href="ILCC Hub Lakes Ad Application 2026.pdf" target="_blank" rel="noopener">
-  <span>Celebrate your swimmers.</span>
-  <span class="cta">Sponsor an Event &rarr;</span>
-</a>
-
 <header>
   <div class="navbar">
     <a href="#home" class="brand">Hub Lakes <span class="swash">2026</span></a>
@@ -464,13 +439,8 @@
       <span class="banner-label">Indian Lake Swim Team Presents</span>
       <h1>Hub Lakes<br><em>Swim</em> Championships</h1>
       <p class="sub">An annual celebration of summer swimming.<br>Indian Lake would like to welcome Cedar Lake, Mountain Lakes, Pirate, Rock Ridge Lake, and White Meadow Lake.</p>
-      <div class="countdown-label" id="countdownLabel">Countdown to Kickoff</div>
-      <div class="countdown" id="countdown" aria-live="polite">
-        <div class="cd-unit"><span class="cd-num" id="cd-days">00</span><span class="cd-label">Days</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">Hrs</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cd-mins">00</span><span class="cd-label">Min</span></div>
-        <div class="cd-unit"><span class="cd-num" id="cd-secs">00</span><span class="cd-label">Sec</span></div>
-      </div>
+      <div class="countdown-label">Champions Crowned</div>
+      <div class="countdown-live">Congratulations to White Meadow Lake, 2026 Champions! See you in 2027.</div>
     </div>
     <div class="lane-badge">
       <div class="inner">
@@ -581,7 +551,7 @@
         <h4>Heat Sheet</h4>
         <div class="status">Available now</div>
       </a>
-      <a class="result-link" href="Reports/hl2026prelimresults.pdf" target="_blank" rel="noopener">
+      <a class="result-link" href="Reports/hl2026prelimresults-updated.pdf" target="_blank" rel="noopener">
         <span class="tag">Day 2</span>
         <h4>Prelim Results</h4>
         <div class="status">Available now</div>
@@ -692,13 +662,6 @@
       <span class="banner-label">What</span>
       <h2>Events</h2>
     </div>
-    <div class="sponsor-callout">
-      <div>
-        <h3>Sponsor an Event</h3>
-        <p>Celebrate your swimmers by sponsoring an event.</p>
-      </div>
-      <a class="btn on-dark" href="ILCC Hub Lakes Ad Application 2026.pdf" target="_blank" rel="noopener">Sponsorship Info &rarr;</a>
-    </div>
     <div class="events-note">
       <strong>Friday Night Distance:</strong> Events 73 &amp; 74 (400 Free) swim Friday evening as part of the Distance Session &mdash; see Schedule for times.
     </div>
@@ -721,25 +684,25 @@
             <tr><td class="evtnum">10</td><td>Male 7-8 25 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">11</td><td>Female 7-8 25 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">12</td><td>Male 13-18 100 IM</td><td class="sponsor"></td></tr>
-            <tr><td class="evtnum">13</td><td>Female 13-18 100 IM</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">13</td><td>Female 13-18 100 IM</td><td class="sponsor">Assemblyman Brian Bergen</td></tr>
             <tr><td class="evtnum">14</td><td>Male 9-10 50 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">15</td><td>Female 9-10 50 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">16</td><td>Male 11-12 50 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">17</td><td>Female 11-12 50 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">18</td><td>Male 13-14 50 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">19</td><td>Female 13-14 50 Free</td><td class="sponsor">The McMahon Family</td></tr>
-            <tr><td class="evtnum">20</td><td>Male 15-19 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">20</td><td>Male 15-19 50 Free</td><td class="sponsor">Assemblyman Brian Bergen</td></tr>
             <tr><td class="evtnum">21</td><td>Female 15-19 50 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">22</td><td>Male 8&amp;U 25 Breast</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">23</td><td>Female 8&amp;U 25 Breast</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">24</td><td>Male 9-10 50 Breast</td><td class="sponsor">The Lascarro Family</td></tr>
             <tr><td class="evtnum">25</td><td>Female 9-10 50 Breast</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">26</td><td>Male 11-12 50 Breast</td><td class="sponsor"></td></tr>
-            <tr><td class="evtnum">27</td><td>Female 11-12 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">27</td><td>Female 11-12 50 Breast</td><td class="sponsor">The Behrens Family</td></tr>
             <tr><td class="evtnum">28</td><td>Male 13-14 50 Breast</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">29</td><td>Female 13-14 50 Breast</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">30</td><td>Male 15-19 50 Breast</td><td class="sponsor">The Bertram Family</td></tr>
-            <tr><td class="evtnum">31</td><td>Female 15-19 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">31</td><td>Female 15-19 50 Breast</td><td class="sponsor">The Behrens Family</td></tr>
             <tr><td class="evtnum">35</td><td>Female 13-19 100 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">36</td><td>Male 12&amp;U 100 IM</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">37</td><td>Female 12&amp;U 100 IM</td><td class="sponsor"></td></tr>
@@ -780,8 +743,8 @@
           </thead>
           <tbody>
             <tr class="table-search-row"><td colspan="3"><input type="text" class="day-search" placeholder="Search events&hellip; e.g. &quot;Breast&quot; or &quot;11-12&quot;"></td></tr>
-            <tr><td class="evtnum">1</td><td>Mixed 8&amp;U 100 Medley Relay</td><td class="sponsor"></td></tr>
-            <tr><td class="evtnum">2</td><td>Mixed 9-10 100 Medley Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">1</td><td>Mixed 8&amp;U 100 Medley Relay</td><td class="sponsor">Lakeside Electric</td></tr>
+            <tr><td class="evtnum">2</td><td>Mixed 9-10 100 Medley Relay</td><td class="sponsor">Assemblyman Brian Bergen</td></tr>
             <tr><td class="evtnum">3</td><td>Mixed 11-12 200 Medley Relay</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">4</td><td>Mixed 13-14 200 Medley Relay</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">5</td><td>Mixed 15-19 200 Medley Relay</td><td class="sponsor"></td></tr>
@@ -792,26 +755,26 @@
             <tr><td class="evtnum">10</td><td>Male 7-8 25 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">11</td><td>Female 7-8 25 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">12</td><td>Male 13-18 100 IM</td><td class="sponsor"></td></tr>
-            <tr><td class="evtnum">13</td><td>Female 13-18 100 IM</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">13</td><td>Female 13-18 100 IM</td><td class="sponsor">Assemblyman Brian Bergen</td></tr>
             <tr><td class="evtnum">14</td><td>Male 9-10 50 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">15</td><td>Female 9-10 50 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">16</td><td>Male 11-12 50 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">17</td><td>Female 11-12 50 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">18</td><td>Male 13-14 50 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">19</td><td>Female 13-14 50 Free</td><td class="sponsor">The McMahon Family</td></tr>
-            <tr><td class="evtnum">20</td><td>Male 15-19 50 Free</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">20</td><td>Male 15-19 50 Free</td><td class="sponsor">Assemblyman Brian Bergen</td></tr>
             <tr><td class="evtnum">21</td><td>Female 15-19 50 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">22</td><td>Male 8&amp;U 25 Breast</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">23</td><td>Female 8&amp;U 25 Breast</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">24</td><td>Male 9-10 50 Breast</td><td class="sponsor">The Lascarro Family</td></tr>
             <tr><td class="evtnum">25</td><td>Female 9-10 50 Breast</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">26</td><td>Male 11-12 50 Breast</td><td class="sponsor"></td></tr>
-            <tr><td class="evtnum">27</td><td>Female 11-12 50 Breast</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">27</td><td>Female 11-12 50 Breast</td><td class="sponsor">The Behrens Family</td></tr>
             <tr><td class="evtnum">28</td><td>Male 13-14 50 Breast</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">29</td><td>Female 13-14 50 Breast</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">30</td><td>Male 15-19 50 Breast</td><td class="sponsor">The Bertram Family</td></tr>
-            <tr><td class="evtnum">31</td><td>Female 15-19 50 Breast</td><td class="sponsor"></td></tr>
-            <tr><td class="evtnum">32</td><td>Male 18&amp;O 200 Free Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">31</td><td>Female 15-19 50 Breast</td><td class="sponsor">The Behrens Family</td></tr>
+            <tr><td class="evtnum">32</td><td>Male 18&amp;O 200 Free Relay</td><td class="sponsor">Assemblyman Brian Bergen</td></tr>
             <tr><td class="evtnum">33</td><td>Female 18&amp;O 200 Free Relay</td><td class="sponsor">The Zuffi Family</td></tr>
             <tr><td class="evtnum">34</td><td>Male 13-19 100 Free</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">35</td><td>Female 13-19 100 Free</td><td class="sponsor"></td></tr>
@@ -849,7 +812,7 @@
             <tr><td class="evtnum">67</td><td>Female 13-14 200 Free Relay</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">68</td><td>Male 15-19 200 Free Relay</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">69</td><td>Female 15-19 200 Free Relay</td><td class="sponsor"></td></tr>
-            <tr><td class="evtnum">70</td><td>Male 35&amp;O 100 Free Relay</td><td class="sponsor"></td></tr>
+            <tr><td class="evtnum">70</td><td>Male 35&amp;O 100 Free Relay</td><td class="sponsor">Assemblyman Brian Bergen</td></tr>
             <tr><td class="evtnum">71</td><td>Female 35&amp;O 100 Free Relay</td><td class="sponsor"></td></tr>
             <tr><td class="evtnum">72</td><td>Mixed 50&amp;O 100 Free Relay</td><td class="sponsor"></td></tr>
           </tbody>
@@ -1346,43 +1309,6 @@
       });
     });
   });
-
-  // ---- Countdown through each session: Friday, Saturday, Sunday ----
-  const sessions = [
-    { start: new Date('2026-07-31T18:30:00'), label: 'Countdown to Kickoff' },
-    { start: new Date('2026-08-01T08:00:00'), label: 'Countdown to Saturday' },
-    { start: new Date('2026-08-02T09:30:00'), label: 'Countdown to Sunday' }
-  ];
-  const dEl = document.getElementById('cd-days');
-  const hEl = document.getElementById('cd-hours');
-  const mEl = document.getElementById('cd-mins');
-  const sEl = document.getElementById('cd-secs');
-  const countdownEl = document.getElementById('countdown');
-  const countdownLabelEl = document.getElementById('countdownLabel');
-  function pad(n){ return String(n).padStart(2,'0'); }
-  let countdownTimer;
-  function tickCountdown(){
-    const now = new Date();
-    const next = sessions.find(s => s.start - now > 0);
-    if(!next){
-      countdownLabelEl.textContent = "It's Championship Weekend!";
-      countdownEl.innerHTML = '<div class="countdown-live">Good luck to all our Hub Lakes swimmers &mdash; see you at the lake!</div>';
-      clearInterval(countdownTimer);
-      return;
-    }
-    countdownLabelEl.textContent = next.label;
-    const diff = next.start - now;
-    const days = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins = Math.floor((diff % 3600000) / 60000);
-    const secs = Math.floor((diff % 60000) / 1000);
-    dEl.textContent = pad(days);
-    hEl.textContent = pad(hours);
-    mEl.textContent = pad(mins);
-    sEl.textContent = pad(secs);
-  }
-  tickCountdown();
-  countdownTimer = setInterval(tickCountdown, 1000);
 
   // ---- Scroll reveal ----
   const revealTargets = document.querySelectorAll('.section-head, .card, .senior-card, .result-link');
